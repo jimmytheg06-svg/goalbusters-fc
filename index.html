@@ -1082,12 +1082,12 @@ footer{background:#040404;padding:68px 52px 34px;border-top:1px solid var(--line
   </div>
   <form id="contact-form">
     <div class="f-row">
-      <div class="f-group"><label>First Name</label><input type="text" name="first_name" placeholder="Hari"></div>
-      <div class="f-group"><label>Last Name</label><input type="text" name="last_name" placeholder="Tamang"></div>
+      <div class="f-group"><label>First Name</label><input type="text" name="first_name" placeholder="First Name" required></div>
+      <div class="f-group"><label>Last Name</label><input type="text" name="last_name" placeholder="Last Name" required></div>
     </div>
-    <div class="f-group"><label>Email</label><input type="email" name="email" placeholder="you@email.com"></div>
+    <div class="f-group"><label>Email</label><input type="email" name="email" placeholder="you@email.com" required></div>
     <div class="f-group"><label>I Want To...</label>
-      <select name="reason"><option>Join &amp; Play Football</option><option>Sponsor the Club</option><option>Ask a Question</option><option>Organise a Match</option></select>
+      <select name="reason" required><option>Join &amp; Play Football</option><option>Sponsor the Club</option><option>Ask a Question</option><option>Organise a Match</option></select>
     </div>
     <div class="f-group"><label>Message</label><textarea placeholder="Tell us a bit about yourself..."></textarea></div>
     <button type="submit" id="submit-btn" class="f-sub">Send Message →</button>
