@@ -1074,19 +1074,25 @@ footer{background:#040404;padding:68px 52px 34px;border-top:1px solid var(--line
       </div>
     </div>
     <div class="cr">
-      <div class="sec-lbl" style="margin-bottom:28px;">Get In Touch</div>
-      <form id="contact-form"></form>
-        <div class="f-row">
-          <div class="f-group"><label>First Name</label><input type="text" placeholder="Hari"></div>
-          <div class="f-group"><label>Last Name</label><input type="text" placeholder="Tamang"></div>
-        </div>
-        <div class="f-group"><label>Email</label><input type="email" placeholder="you@email.com"></div>
-        <div class="f-group"><label>I Want To…</label>
-          <select><option>Join &amp; Play Football</option><option>Sponsor the Club</option><option>Ask a Question</option><option>Organise a Match</option></select>
-        </div>
-        <div class="f-group"><label>Message</label><textarea placeholder="Tell us a bit about yourself…"></textarea></div>
-        <button type="submit" id="submit-btn" class="f-sub">Send Message →</button>
-      </form>
+  <div class="sec-lbl" style="margin-bottom:28px;">Get In Touch</div>
+  <div id="form-success" style="display:none;background:rgba(76,175,114,.15);border:1px solid rgba(76,175,114,.3);padding:24px;margin-bottom:24px;text-align:center;">
+    <div style="font-size:28px;margin-bottom:8px;">✓</div>
+    <div style="font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;color:#4caf72;letter-spacing:.1em;text-transform:uppercase;">Message Sent!</div>
+    <div style="font-family:'Crimson Pro',serif;font-size:14px;font-style:italic;color:rgba(255,255,255,.45);margin-top:6px;">We'll be in touch soon.</div>
+  </div>
+  <form id="contact-form">
+    <div class="f-row">
+      <div class="f-group"><label>First Name</label><input type="text" name="first_name" placeholder="Hari"></div>
+      <div class="f-group"><label>Last Name</label><input type="text" name="last_name" placeholder="Tamang"></div>
+    </div>
+    <div class="f-group"><label>Email</label><input type="email" name="email" placeholder="you@email.com"></div>
+    <div class="f-group"><label>I Want To...</label>
+      <select name="reason"><option>Join &amp; Play Football</option><option>Sponsor the Club</option><option>Ask a Question</option><option>Organise a Match</option></select>
+    </div>
+    <div class="f-group"><label>Message</label><textarea placeholder="Tell us a bit about yourself..."></textarea></div>
+    <button type="submit" id="submit-btn" class="f-sub">Send Message →</button>
+  </form>
+</div>
     </div>
   </div>
 </section>
