@@ -292,11 +292,16 @@ nav{position:fixed;top:51px;left:0;right:0;width:100%;z-index:200;
 /* ---- PODCAST ---- */
 .podcast{background:var(--ink2);padding:110px 52px;border-top:1px solid var(--line);}
 /* ─── HISTORY ─── */
-.history{background:var(--ink2);padding:110px 52px;border-top:1px solid var(--line);}
-.h-content{max-width:900px;margin:0 auto;}
+.history{background:var(--ink2);padding:110px 52px;border-top:1px solid var(--line);position:relative;overflow:hidden;}
+.history::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent,transparent 90px,rgba(201,168,76,.018) 90px,rgba(201,168,76,.018) 91px);pointer-events:none;z-index:0;}
+.history::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;background:url('https://res.cloudinary.com/dlm10vyhl/image/upload/v1779228594/GBlogo_clean_eyyjwe.png') center/contain no-repeat;opacity:.05;pointer-events:none;z-index:0;}
+.h-content{max-width:900px;margin:0 auto;position:relative;z-index:1;}
 .h-top{margin-bottom:60px;}
-.h-text{display:flex;flex-direction:column;gap:24px;}
-.h-text p{font-family:'Crimson Pro',serif;font-size:18px;line-height:1.82;color:var(--white);font-weight:300;}
+.h-text{display:flex;flex-direction:column;gap:0;padding-left:36px;position:relative;}
+.h-text::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,transparent,var(--gold) 15%,var(--gold) 85%,transparent);}
+.h-text p{font-family:'Crimson Pro',serif;font-size:18px;line-height:1.82;color:var(--white);font-weight:300;margin:0;padding:28px 0;border-bottom:1px solid rgba(201,168,76,.08);position:relative;}
+.h-text p:last-child{border-bottom:none;}
+.h-text p::before{content:'';position:absolute;left:-41px;top:36px;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px rgba(201,168,76,.6);}
 .h-text p:first-letter{font-size:1em;}
 
 /* ─── ABOUT ─── */
