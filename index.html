@@ -358,8 +358,11 @@ nav{position:fixed;top:51px;left:0;right:0;width:100%;z-index:200;
   background:linear-gradient(to bottom,var(--gold-l),var(--gold));transition:height .35s;}
 .n-card:hover::before{height:100%;}
 .n-card.feat{grid-row:span 2;}
-.n-ph{width:100%;height:220px;object-fit:cover;object-position:center center;
-  display:block;margin-bottom:22px;filter:brightness(.7);}
+.n-ph{width:100%;height:auto;max-height:280px;object-fit:contain;object-position:center top;
+  display:block;margin-bottom:22px;filter:brightness(.85);background:#0a0a0a;
+  transition:transform .4s cubic-bezier(.16,1,.3,1);}
+.n-card:hover .n-ph{transform:scale(1.02);}
+.n-card.feat .n-ph{max-height:320px;}
 .n-tag{font-family:'Oswald',sans-serif;font-size:10px;font-weight:400;letter-spacing:.24em;
   text-transform:uppercase;color:var(--gold);margin-bottom:15px;display:block;}
 .n-title{font-family:'Oswald',sans-serif;font-size:28px;font-weight:600;letter-spacing:.04em;
