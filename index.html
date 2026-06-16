@@ -408,6 +408,48 @@ nav{position:fixed;top:51px;left:0;right:0;width:100%;z-index:200;
 .league-table .team-name{font-weight:500;color:var(--white);}
 .league-table .our-team{background:rgba(76,175,114,.1);font-weight:600;color:var(--mint);}
 
+/* ── UNITY CUP SECTION ── */
+.unity-cup{background:linear-gradient(160deg,#06060f 0%,#080810 50%,#060f08 100%);padding:90px 52px;border-top:3px solid var(--gold);border-bottom:1px solid var(--line);position:relative;overflow:hidden;}
+.unity-cup::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 15% 60%,rgba(201,168,76,.07) 0%,transparent 55%),radial-gradient(ellipse at 85% 40%,rgba(76,175,114,.04) 0%,transparent 55%);pointer-events:none;}
+.unity-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:30px;margin-bottom:52px;position:relative;z-index:1;}
+.unity-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.35);padding:6px 18px;margin-bottom:18px;}
+.unity-badge span{font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);}
+.unity-title{font-family:'Oswald',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--white);line-height:1;margin-bottom:10px;}
+.unity-title em{color:var(--gold);font-style:normal;}
+.unity-sub{font-family:'Crimson Pro',serif;font-size:17px;font-style:italic;color:rgba(255,255,255,.45);max-width:520px;line-height:1.7;}
+.unity-good-luck{background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(201,168,76,.03));border:1px solid rgba(201,168,76,.38);padding:22px 26px;max-width:360px;flex-shrink:0;}
+.unity-good-luck-label{font-family:'Oswald',sans-serif;font-size:9px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.unity-good-luck-text{font-family:'Crimson Pro',serif;font-size:15px;font-style:italic;color:rgba(255,255,255,.7);line-height:1.7;}
+.unity-layout{display:grid;grid-template-columns:1fr 1fr;gap:3px;position:relative;z-index:1;}
+.unity-card{background:rgba(255,255,255,.025);border:1px solid rgba(201,168,76,.15);padding:32px;}
+.unity-card-label{font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.unity-group-title{font-family:'Oswald',sans-serif;font-size:26px;font-weight:700;letter-spacing:.06em;color:var(--white);margin-bottom:4px;}
+.unity-group-title span{color:var(--gold);}
+.unity-group-sub{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:.08em;margin-bottom:20px;text-transform:uppercase;font-family:'Oswald',sans-serif;}
+.unity-team-list{display:flex;flex-direction:column;gap:8px;}
+.unity-team{display:flex;align-items:center;gap:14px;padding:10px 14px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);}
+.unity-team.us{background:linear-gradient(90deg,rgba(201,168,76,.1),rgba(201,168,76,.03));border-color:rgba(201,168,76,.35);}
+.unity-team-pos{font-family:'Oswald',sans-serif;font-size:11px;color:rgba(255,255,255,.28);width:18px;}
+.unity-team-name{font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:.05em;color:rgba(255,255,255,.72);}
+.unity-team.us .unity-team-name{color:var(--gold-l);}
+.unity-match-list{display:flex;flex-direction:column;gap:10px;}
+.unity-match{padding:14px 16px;background:rgba(255,255,255,.02);border:1px solid rgba(201,168,76,.12);border-left:3px solid var(--gold);}
+.unity-match-round{font-family:'Oswald',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.unity-match-opp{font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;letter-spacing:.04em;color:var(--white);margin-bottom:4px;}
+.unity-match-meta{font-size:11px;color:rgba(255,255,255,.38);display:flex;gap:14px;flex-wrap:wrap;}
+.unity-roster-wrap{margin-top:3px;grid-column:span 2;background:rgba(255,255,255,.02);border:1px solid rgba(201,168,76,.15);padding:32px;}
+.unity-roster-img{width:100%;height:auto;display:block;border:1px solid rgba(201,168,76,.2);}
+.unity-sponsors-wrap{margin-top:3px;grid-column:span 2;background:rgba(255,255,255,.02);border:1px solid rgba(201,168,76,.15);padding:32px;}
+.unity-sponsor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:20px;}
+.unity-sponsor-card{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.18);padding:26px 20px;text-align:center;transition:background .22s,border-color .22s;}
+.unity-sponsor-card:hover{background:rgba(201,168,76,.09);border-color:rgba(201,168,76,.38);}
+.unity-sponsor-icon{font-size:30px;margin-bottom:12px;}
+.unity-sponsor-name{font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;letter-spacing:.06em;color:var(--gold-l);margin-bottom:4px;text-transform:uppercase;}
+.unity-sponsor-role{font-family:'Oswald',sans-serif;font-size:9px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,168,76,.45);margin-bottom:14px;}
+.unity-sponsor-msg{font-family:'Crimson Pro',serif;font-size:14px;font-style:italic;color:rgba(255,255,255,.5);line-height:1.7;}
+@media(max-width:768px){.unity-cup{padding:60px 20px;}.unity-layout{grid-template-columns:1fr;}.unity-roster-wrap,.unity-sponsors-wrap{grid-column:span 1;}.unity-sponsor-grid{grid-template-columns:1fr;}.unity-header{flex-direction:column;}}
+/* ── END UNITY CUP ── */
+
 /* ─── UPCOMING FIXTURES TILES ─── */
 .upcoming-container{margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;}
 .fixture-tile{background:linear-gradient(135deg,var(--card),#121212);padding:32px;border:1px solid rgba(201,168,76,.2);
@@ -619,6 +661,7 @@ footer{background:#040404;padding:68px 52px 34px;border-top:1px solid var(--line
     <li><a href="#about">About</a></li>
     <li><a href="#team">Team</a></li>
     <li><a href="#league">League</a></li>
+    <li><a href="#unity-cup" style="color:var(--gold);font-weight:600;">🏆 Unity Cup</a></li>
     <li><a href="#upcoming">Fixtures</a></li>
     <li><a href="#results">Results</a></li>
     <li><a href="#news">News</a></li>
@@ -986,88 +1029,114 @@ footer{background:#040404;padding:68px 52px 34px;border-top:1px solid var(--line
     </div>
   </div>
 </section>
+<!-- ═══ UNITY CUP 2026 ═══ -->
+<section class="unity-cup" id="unity-cup">
+  <div class="wrap">
+    <div class="unity-header">
+      <div>
+        <div class="unity-badge"><span>✈️ Cincinnati, Ohio · June 2026 · 2nd Edition</span></div>
+        <div class="unity-title">The Unity <em>Cup</em> 2026</div>
+        <p class="unity-sub">Goal Busters FC travel to Cincinnati for the 2nd edition of The Unity Cup. Open Men's Division — Group D, Pole B. Three games. One goal. Bring it home.</p>
+      </div>
+      <div class="unity-good-luck">
+        <div class="unity-good-luck-label">⚽ From the Club</div>
+        <div class="unity-good-luck-text">To every player making the trip to Cincinnati — the whole club is behind you. You've put in the work, you've earned your place on that pitch. Play with heart, play for each other, and make Goal Busters FC proud. Go get it, boys. 🖤💛</div>
+      </div>
+    </div>
+    <div class="unity-layout">
+      <div class="unity-card">
+        <div class="unity-card-label">⚽ Group D Draw · Pole B</div>
+        <div class="unity-group-title">Group <span>D</span></div>
+        <div class="unity-group-sub">Open Men · Pole B</div>
+        <div class="unity-team-list">
+          <div class="unity-team"><span class="unity-team-pos">D1</span><span class="unity-team-name">Jhapa XI F.C</span></div>
+          <div class="unity-team"><span class="unity-team-pos">D2</span><span class="unity-team-name">Himalayan Lions</span></div>
+          <div class="unity-team us"><span class="unity-team-pos">D3</span><span class="unity-team-name">⭐ Goalbuster F.C</span></div>
+          <div class="unity-team"><span class="unity-team-pos">D4</span><span class="unity-team-name">Jhapa F.C</span></div>
+        </div>
+      </div>
+      <div class="unity-card">
+        <div class="unity-card-label">📅 Open Men Schedule</div>
+        <div class="unity-match-list">
+          <div class="unity-match">
+            <div class="unity-match-round">Friday Day 1 · R1 · Group D</div>
+            <div class="unity-match-opp">VS Jhapa F.C</div>
+            <div class="unity-match-meta"><span>⏰ 10:55 AM – 11:40 AM</span><span>📍 Cincinnati, OH</span></div>
+          </div>
+          <div class="unity-match">
+            <div class="unity-match-round">Friday Day 1 · R2 · Group D</div>
+            <div class="unity-match-opp">VS Jhapa XI F.C</div>
+            <div class="unity-match-meta"><span>⏰ 2:50 PM – 3:45 PM</span><span>📍 Cincinnati, OH</span></div>
+          </div>
+          <div class="unity-match">
+            <div class="unity-match-round">Saturday Day 2 · R3 · Group D</div>
+            <div class="unity-match-opp">VS Himalayan Lions</div>
+            <div class="unity-match-meta"><span>⏰ 10:50 AM – 11:35 AM</span><span>📍 Cincinnati, OH</span></div>
+          </div>
+          <div class="unity-match" style="border-left-color:var(--mint);">
+            <div class="unity-match-round" style="color:var(--mint);">Saturday Day 2 · Knockout Stage</div>
+            <div class="unity-match-opp">Quarterfinals / Semis / Final</div>
+            <div class="unity-match-meta"><span>⏰ TBD based on group finish</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="unity-roster-wrap">
+        <div class="unity-card-label">👕 Squad Roster — Unity Cup 2026</div>
+        <img class="unity-roster-img" src="https://res.cloudinary.com/dlm10vyhl/image/upload/v1781620843/Image_aldqt9.jpg" alt="Goal Busters FC Unity Cup 2026 Roster">
+      </div>
+      <div class="unity-sponsors-wrap">
+        <div class="unity-card-label">🙏 Unity Cup Sponsors — Thank You</div>
+        <p style="font-family:'Crimson Pro',serif;font-size:17px;font-style:italic;color:rgba(255,255,255,.6);line-height:1.75;">A heartfelt thank you to Amit, Fuba, and Bijay — three pillars of this club who have given their time, their heart, and now their generosity to make this Cincinnati trip possible. This club runs on people like you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ UPCOMING GAMES ═══ -->
 <section class="upcoming" id="upcoming">
   <div class="wrap">
     <div class="sec-lbl">What's Next</div>
     <h2 class="sec-h">Upcoming <em>Fixtures</em></h2>
     <div class="upcoming-container">
-      
-      <!-- WEEK 4 -->
-      <div class="fixture-tile">
-        <span class="fixture-week">Week 4</span>
-        <div class="fixture-date">March 8, 2026</div>
-        
+     <div class="fixture-tile" style="border-color:rgba(201,168,76,.45);">
+        <span class="fixture-week" style="color:var(--gold-l);">Unity Cup · R1</span>
+        <div class="fixture-date">Friday, June 2026 · Day 1</div>
         <div class="fixture-match">
-          <span class="fixture-team-badge white">GB-White</span>
-          <div class="fixture-vs-container">
-            <div class="fixture-opponent">VS ERFC Blue</div>
-          </div>
+          <span class="fixture-team-badge">GB Open Men</span>
+          <div class="fixture-vs-container"><div class="fixture-opponent">VS Jhapa F.C</div></div>
           <div class="fixture-details">
-            <div class="fixture-detail"><strong>Time:</strong> <span>07:30 AM</span></div>
-            <div class="fixture-detail"><strong>Field:</strong> <span>Field No. 1</span></div>
-          </div>
-        </div>
-
-        <div class="fixture-match">
-          <span class="fixture-team-badge">GB-Red</span>
-          <div class="fixture-vs-container">
-            <div class="fixture-opponent">VS Fort Worth Rising</div>
-          </div>
-          <div class="fixture-details">
-            <div class="fixture-detail"><strong>Time:</strong> <span>09:30 AM</span></div>
-            <div class="fixture-detail"><strong>Field:</strong> <span>Field No. 1</span></div>
+            <div class="fixture-detail"><strong>Time:</strong> <span>10:55 AM – 11:40 AM</span></div>
+            <div class="fixture-detail"><strong>Venue:</strong> <span>Cincinnati, Ohio</span></div>
+            <div class="fixture-detail"><strong>Group:</strong> <span>Group D · Round 1</span></div>
           </div>
         </div>
       </div>
-
-      <!-- WEEK 5 -->
-      <div class="fixture-tile">
-        <span class="fixture-week">Week 5</span>
-        <div class="fixture-date">March 22, 2026</div>
-        
+      <div class="fixture-tile" style="border-color:rgba(201,168,76,.45);">
+        <span class="fixture-week" style="color:var(--gold-l);">Unity Cup · R2</span>
+        <div class="fixture-date">Friday, June 2026 · Day 1</div>
         <div class="fixture-match">
-          <span class="fixture-team-badge white">GB-White</span>
-          <div class="fixture-vs-container">
-            <div class="fixture-opponent">VS D-Town FC</div>
-          </div>
+          <span class="fixture-team-badge">GB Open Men</span>
+          <div class="fixture-vs-container"><div class="fixture-opponent">VS Jhapa XI F.C</div></div>
           <div class="fixture-details">
-            <div class="fixture-detail"><strong>Time:</strong> <span>07:30 AM</span></div>
-            <div class="fixture-detail"><strong>Field:</strong> <span>Field No. 1</span></div>
-          </div>
-        </div>
-
-        <div class="fixture-match">
-          <span class="fixture-team-badge">GB-Red</span>
-          <div class="fixture-vs-container">
-            <div class="fixture-opponent">VS Euless United</div>
-          </div>
-          <div class="fixture-details">
-            <div class="fixture-detail"><strong>Time:</strong> <span>09:30 AM</span></div>
-            <div class="fixture-detail"><strong>Field:</strong> <span>Field No. 1</span></div>
+            <div class="fixture-detail"><strong>Time:</strong> <span>2:50 PM – 3:45 PM</span></div>
+            <div class="fixture-detail"><strong>Venue:</strong> <span>Cincinnati, Ohio</span></div>
+            <div class="fixture-detail"><strong>Group:</strong> <span>Group D · Round 2</span></div>
           </div>
         </div>
       </div>
-
-      <!-- WEEK 6 - DERBY -->
-      <div class="fixture-tile fixture-derby">
-        <span class="fixture-week">Week 6</span>
-        <div class="fixture-date">April 5, 2026</div>
-        
+      <div class="fixture-tile" style="border-color:rgba(201,168,76,.45);">
+        <span class="fixture-week" style="color:var(--gold-l);">Unity Cup · R3</span>
+        <div class="fixture-date">Saturday, June 2026 · Day 2</div>
         <div class="fixture-match">
-          <span class="fixture-team-badge">GB-Red</span>
-          <div class="fixture-vs-container">
-            <div class="fixture-opponent">VS GB-White</div>
-          </div>
+          <span class="fixture-team-badge">GB Open Men</span>
+          <div class="fixture-vs-container"><div class="fixture-opponent">VS Himalayan Lions</div></div>
           <div class="fixture-details">
-            <div class="fixture-detail"><strong>Time:</strong> <span>09:30 AM</span></div>
-            <div class="fixture-detail"><strong>Field:</strong> <span>Field No. 1</span></div>
-            <div class="fixture-detail" style="margin-top:8px;color:#ff6b6b;"><strong style="color:#ff6b6b;">⚡ Derby:</strong> <span>Inter-Club Clash!</span></div>
+            <div class="fixture-detail"><strong>Time:</strong> <span>10:50 AM – 11:35 AM</span></div>
+            <div class="fixture-detail"><strong>Venue:</strong> <span>Cincinnati, Ohio</span></div>
+            <div class="fixture-detail"><strong>Group:</strong> <span>Group D · Round 3</span></div>
           </div>
         </div>
       </div>
-
-    </div>
   </div>
 </section>
 
@@ -1159,6 +1228,20 @@ footer{background:#040404;padding:68px 52px 34px;border-top:1px solid var(--line
     <div class="sec-lbl">Latest</div>
     <h2 class="sec-h">News &amp; <em>Updates</em></h2>
     <div class="n-grid">
+      <div class="n-card" style="border-color:rgba(201,168,76,.4);background:linear-gradient(160deg,#06060f,#080810);">
+        <div style="background:linear-gradient(135deg,#06060f,#0a0a18);min-height:160px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(201,168,76,.2);margin-bottom:22px;">
+          <div style="text-align:center;padding:20px;">
+            <div style="font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.3em;color:rgba(201,168,76,.5);margin-bottom:8px;">2ND EDITION</div>
+            <div style="font-family:'Oswald',sans-serif;font-size:36px;font-weight:700;color:var(--gold);letter-spacing:.04em;line-height:1;">THE UNITY CUP</div>
+            <div style="font-family:'Oswald',sans-serif;font-size:13px;color:rgba(255,255,255,.3);letter-spacing:.2em;margin-top:6px;">CINCINNATI, OHIO</div>
+            <div style="font-size:28px;margin-top:12px;">🏆✈️</div>
+          </div>
+        </div>
+        <span class="n-tag">✈️ Tournament · Cincinnati, OH · June 2026</span>
+        <div class="n-title">Goal Busters Head to Cincinnati for Unity Cup 2026</div>
+        <div class="n-body">Open Men's Division — Group D, Pole B. Three group games Friday and Saturday. Special thanks to Amit, Fuba, and Bijay for making this trip possible.</div>
+        <span class="n-date">June 2026</span>
+      </div>
       <div class="n-card feat">
         <img class="n-ph" src="https://res.cloudinary.com/dlm10vyhl/image/upload/v1779220808/553989566_1322828652962871_5897749810317406542_n_cbvafz.jpg" alt="14th Gurkha Cup">
         <span class="n-tag">🏆 Match Report · Sept 20–21, 2025</span>
