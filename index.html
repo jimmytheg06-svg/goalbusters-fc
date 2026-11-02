@@ -1277,19 +1277,13 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox
   var TARGET = new Date('2026-12-19T08:00:00-06:00'); // Goalbuster Cup 2026 kickoff, Grapevine TX (Central Time)
   var tile = document.getElementById('gbcupTile');
   var closeBtn = document.getElementById('gbcupClose');
-  var storageKey = 'gbcup_popup_shown';
   var today = new Date();
-  var todayKey = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
   function closeTile(){
     tile.classList.remove('show');
-    try { localStorage.setItem(storageKey, todayKey); } catch(e){}
   }
   closeBtn.addEventListener('click', closeTile);
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && tile.classList.contains('show')) closeTile(); });
-
-  var alreadyShownToday = false;
-  try { alreadyShownToday = localStorage.getItem(storageKey) === todayKey; } catch(e){}
 
   // Daily division spotlight — rotates automatically through the three divisions, same for every visitor on a given day
   var divisions = [
@@ -1323,11 +1317,9 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox
   tick();
   var timer = setInterval(tick, 1000);
 
-  if (!alreadyShownToday){
-    setTimeout(function(){
-      tile.classList.add('show');
-    }, 500);
-  }
+  setTimeout(function(){
+    tile.classList.add('show');
+  }, 500);
 })();
 </script>
   <div class="lightbox" id="lightbox">
