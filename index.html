@@ -391,115 +391,34 @@ nav{position:fixed;top:51px;left:0;right:0;width:100%;z-index:200;
   color:var(--white);margin-bottom:13px;line-height:1.1;text-transform:uppercase;}
 .tr-desc{font-size:13px;color:rgba(255,255,255,.34);line-height:1.78;}
 
-/* ─── LEAGUE TABLE ─── */
-.league{background:var(--ink);padding:110px 52px;}
-.league-container{margin-top:56px;}
-.league-image{width:100%;height:auto;max-width:100%;border:1px solid var(--line);margin-bottom:40px;display:block;background:var(--card);padding:20px;box-sizing:border-box;}
-.league-info{background:var(--card);padding:40px;border-left:4px solid var(--gold);margin-bottom:30px;}
-.league-info h3{font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
-.league-info p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.7;}
-.table-wrapper{overflow-x:auto;background:var(--card);border:1px solid var(--line);margin-top:20px;}
-.league-table{width:100%;border-collapse:collapse;font-family:'Inter',sans-serif;}
-.league-table thead{background:rgba(201,168,76,.1);}
-.league-table th{padding:16px;text-align:left;font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);}
-.league-table td{padding:14px 16px;border-bottom:1px solid rgba(201,168,76,.1);color:rgba(255,255,255,.8);font-size:13px;}
-.league-table tr:hover{background:rgba(201,168,76,.05);}
-.league-table .rank{font-family:'Oswald',sans-serif;font-weight:600;color:var(--gold);width:40px;}
-.league-table .team-name{font-weight:500;color:var(--white);}
-.league-table .our-team{background:rgba(76,175,114,.1);font-weight:600;color:var(--mint);}
-
-/* ── UNITY CUP SECTION ── */
-.unity-cup{background:linear-gradient(160deg,#06060f 0%,#080810 50%,#060f08 100%);padding:90px 52px;border-top:3px solid var(--gold);border-bottom:1px solid var(--line);position:relative;overflow:hidden;}
-.unity-cup::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 15% 60%,rgba(201,168,76,.07) 0%,transparent 55%),radial-gradient(ellipse at 85% 40%,rgba(76,175,114,.04) 0%,transparent 55%);pointer-events:none;}
-.unity-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:30px;margin-bottom:52px;position:relative;z-index:1;}
-.unity-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.35);padding:6px 18px;margin-bottom:18px;}
-.unity-badge span{font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);}
-.unity-title{font-family:'Oswald',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--white);line-height:1;margin-bottom:10px;}
-.unity-title em{color:var(--gold);font-style:normal;}
-.unity-sub{font-family:'Crimson Pro',serif;font-size:17px;font-style:italic;color:rgba(255,255,255,.45);max-width:520px;line-height:1.7;}
-.unity-good-luck{background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(201,168,76,.03));border:1px solid rgba(201,168,76,.38);padding:22px 26px;max-width:360px;flex-shrink:0;}
-.unity-good-luck-label{font-family:'Oswald',sans-serif;font-size:9px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
-.unity-good-luck-text{font-family:'Crimson Pro',serif;font-size:15px;font-style:italic;color:rgba(255,255,255,.7);line-height:1.7;}
-.unity-layout{display:grid;grid-template-columns:1fr 1fr;gap:3px;position:relative;z-index:1;}
-.unity-card{background:rgba(255,255,255,.025);border:1px solid rgba(201,168,76,.15);padding:32px;}
-.unity-card-label{font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
-.unity-group-title{font-family:'Oswald',sans-serif;font-size:26px;font-weight:700;letter-spacing:.06em;color:var(--white);margin-bottom:4px;}
-.unity-group-title span{color:var(--gold);}
-.unity-group-sub{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:.08em;margin-bottom:20px;text-transform:uppercase;font-family:'Oswald',sans-serif;}
-.unity-team-list{display:flex;flex-direction:column;gap:8px;}
-.unity-team{display:flex;align-items:center;gap:14px;padding:10px 14px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);}
-.unity-team.us{background:linear-gradient(90deg,rgba(201,168,76,.1),rgba(201,168,76,.03));border-color:rgba(201,168,76,.35);}
-.unity-team-pos{font-family:'Oswald',sans-serif;font-size:11px;color:rgba(255,255,255,.28);width:18px;}
-.unity-team-name{font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:.05em;color:rgba(255,255,255,.72);}
-.unity-team.us .unity-team-name{color:var(--gold-l);}
-.unity-match-list{display:flex;flex-direction:column;gap:10px;}
-.unity-match{padding:14px 16px;background:rgba(255,255,255,.02);border:1px solid rgba(201,168,76,.12);border-left:3px solid var(--gold);}
-.unity-match-round{font-family:'Oswald',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
-.unity-match-opp{font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;letter-spacing:.04em;color:var(--white);margin-bottom:4px;}
-.unity-match-meta{font-size:11px;color:rgba(255,255,255,.38);display:flex;gap:14px;flex-wrap:wrap;}
-.unity-roster-wrap{margin-top:3px;grid-column:span 2;background:rgba(255,255,255,.02);border:1px solid rgba(201,168,76,.15);padding:32px;}
-.unity-roster-img{width:100%;height:auto;display:block;border:1px solid rgba(201,168,76,.2);}
-.unity-sponsors-wrap{margin-top:3px;grid-column:span 2;background:rgba(255,255,255,.02);border:1px solid rgba(201,168,76,.15);padding:32px;}
-.unity-sponsor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:20px;}
-.unity-sponsor-card{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.18);padding:26px 20px;text-align:center;transition:background .22s,border-color .22s;}
-.unity-sponsor-card:hover{background:rgba(201,168,76,.09);border-color:rgba(201,168,76,.38);}
-.unity-sponsor-icon{font-size:30px;margin-bottom:12px;}
-.unity-sponsor-name{font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;letter-spacing:.06em;color:var(--gold-l);margin-bottom:4px;text-transform:uppercase;}
-.unity-sponsor-role{font-family:'Oswald',sans-serif;font-size:9px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,168,76,.45);margin-bottom:14px;}
-.unity-sponsor-msg{font-family:'Crimson Pro',serif;font-size:14px;font-style:italic;color:rgba(255,255,255,.5);line-height:1.7;}
-@media(max-width:768px){.unity-cup{padding:60px 20px;}.unity-layout{grid-template-columns:1fr;}.unity-roster-wrap,.unity-sponsors-wrap{grid-column:span 1;}.unity-sponsor-grid{grid-template-columns:1fr;}.unity-header{flex-direction:column;}}
-/* ── END UNITY CUP ── */
-
-/* ─── UPCOMING FIXTURES TILES ─── */
-.upcoming-container{margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;}
-.fixture-tile{background:linear-gradient(135deg,var(--card),#121212);padding:32px;border:1px solid rgba(201,168,76,.2);
-  border-radius:8px;transition:all .35s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden;}
-.fixture-tile::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:3px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);transition:left .35s;}
-.fixture-tile:hover{background:linear-gradient(135deg,#141414,#0f0f0f);border-color:var(--gold);
-  transform:translateY(-8px);box-shadow:0 20px 50px rgba(201,168,76,.15),inset 0 0 20px rgba(201,168,76,.05);}
-.fixture-tile:hover::before{left:100%;}
-.fixture-week{font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:inline-block;
-  background:rgba(201,168,76,.1);padding:4px 12px;border-radius:20px;}
-.fixture-date{font-family:'Oswald',sans-serif;font-size:14px;font-weight:500;letter-spacing:.06em;
-  color:rgba(255,255,255,.7);margin-bottom:20px;}
-.fixture-match{margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid rgba(201,168,76,.1);}
-.fixture-match:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
-.fixture-team-badge{display:inline-flex;align-items:center;justify-content:center;
-  background:rgba(201,168,76,.25);color:var(--gold);padding:8px 16px;border-radius:6px;
-  font-family:'Oswald',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;
-  margin-bottom:16px;text-transform:uppercase;border:1px solid rgba(201,168,76,.4);}
-.fixture-team-badge.white{background:rgba(76,175,114,.25);color:var(--mint);border-color:rgba(76,175,114,.4);}
-.fixture-vs{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
-.fixture-opponent{font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;letter-spacing:.08em;
-  color:var(--white);text-transform:uppercase;}
-
-.fixture-team-name{font-family:'Oswald',sans-serif;font-size:28px;font-weight:700;letter-spacing:.08em;
-  color:var(--white);text-transform:uppercase;margin-bottom:8px;}
-.fixture-vs-container{display:flex;flex-direction:column;align-items:flex-start;gap:4px;}
-.fixture-opponent{font-family:'Oswald',sans-serif;font-size:24px;font-weight:700;letter-spacing:.06em;
-  color:var(--white);text-transform:uppercase;margin-bottom:16px;}
-
-.fixture-details{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
-.fixture-detail{display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,.6);
-  font-family:'Inter',sans-serif;}
-.fixture-detail strong{color:rgba(255,255,255,.8);font-weight:600;min-width:50px;}
-.fixture-icon{width:20px;height:20px;display:flex;align-items:center;justify-content:center;
-  color:var(--gold);font-size:12px;}
-.fixture-derby{background:linear-gradient(135deg,rgba(200,50,50,.2),rgba(150,30,30,.15));
-  border-color:rgba(200,50,50,.3);position:relative;}
-.fixture-derby::after{content:'DERBY';position:absolute;top:12px;right:12px;
-  font-family:'Oswald',sans-serif;font-size:9px;font-weight:700;color:#ff6b6b;
-  letter-spacing:.15em;padding:4px 10px;border:1px solid rgba(200,50,50,.4);border-radius:20px;}
-.fixture-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:30px;}
-.fixture-card{background:var(--card);padding:28px;border:1px solid var(--line);transition:all .3s;}
-.fixture-card:hover{background:rgba(201,168,76,.08);border-color:var(--gold);}
-.fixture-date{font-family:'Oswald',sans-serif;font-size:10px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
-.fixture-matchup{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:14px;}
-.fixture-team{font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--white);flex:1;text-align:center;}
-.fixture-vs{font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);padding:0 12px;}
-.fixture-time{font-family:'Inter',sans-serif;font-size:11px;color:rgba(255,255,255,.5);text-align:center;font-weight:500;}
+/* ─── GOALBUSTER CUP 2026 FEATURE ─── */
+.gb-feature{background:linear-gradient(160deg,#0a0a0a 0%,#100d02 55%,#0a0a0a 100%);
+  padding:110px 52px;border-top:3px solid var(--gold);border-bottom:1px solid var(--line);
+  position:relative;overflow:hidden;}
+.gb-feature::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 85% 20%,rgba(201,168,76,.08) 0%,transparent 55%);
+  pointer-events:none;}
+.gb-feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;
+  position:relative;z-index:1;}
+.gb-feature-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,50,50,.18);
+  border:1px solid rgba(200,50,50,.4);color:#ff8a8a;padding:6px 16px;border-radius:20px;
+  font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;margin-bottom:22px;}
+.gb-feature-desc{font-family:'Crimson Pro',serif;font-size:19px;font-style:italic;
+  color:rgba(255,255,255,.55);line-height:1.8;margin-top:22px;max-width:480px;}
+.gb-feature-desc strong{color:rgba(255,255,255,.9);font-style:normal;font-weight:600;}
+.gb-feature-facts{margin-top:30px;display:flex;flex-direction:column;gap:12px;}
+.gb-feature-fact{font-family:'Oswald',sans-serif;font-size:14px;letter-spacing:.03em;
+  color:rgba(255,255,255,.78);display:flex;align-items:center;gap:12px;}
+.gb-feature-fact b{color:var(--gold-l);}
+.gb-feature-actions{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;}
+.gb-feature-img{width:100%;border-radius:10px;border:1px solid rgba(201,168,76,.3);
+  box-shadow:0 30px 70px rgba(0,0,0,.5);cursor:pointer;transition:transform .3s;}
+.gb-feature-img:hover{transform:translateY(-6px);}
+@media(max-width:900px){
+  .gb-feature-grid{grid-template-columns:1fr;gap:44px;}
+  .gb-feature{padding:70px 24px;}
+}
 
 /* ─── RECENT RESULTS ─── */
 .results{background:var(--ink);padding:110px 52px;}
@@ -764,9 +683,7 @@ footer{background:#040404;padding:68px 52px 34px;border-top:1px solid var(--line
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#team">Team</a></li>
-    <li><a href="#league">League</a></li>
-    <li><a href="#unity-cup" style="color:var(--gold);font-weight:600;">🏆 Unity Cup</a></li>
-    <li><a href="#upcoming">Fixtures</a></li>
+    <li><a href="#goalbuster-cup" style="color:var(--gold);font-weight:600;">🏆 Goalbuster Cup</a></li>
     <li><a href="#results">Results</a></li>
     <li><a href="#news">News</a></li>
     <li><a href="#training">Training</a></li>
@@ -1002,248 +919,34 @@ footer{background:#040404;padding:68px 52px 34px;border-top:1px solid var(--line
   </div>
 </section>
 
-<!-- ═══ LEAGUE TABLE ═══ -->
-<section class="league" id="league">
+<!-- ═══ GOALBUSTER CUP 2026 ═══ -->
+<section class="gb-feature" id="goalbuster-cup">
   <div class="wrap">
-    <div class="sec-lbl">DFW Himalaya FC</div>
-    <h2 class="sec-h">League <em>Standings</em></h2>
-    <div class="league-container">
-      <div class="league-info">
-        <h3>📊 Week 9 — Final Standings</h3>
-        <p>Goal Busters FC White finished 3rd on goal difference with 21 points from 9 matches. GB Red finished 7th.</p>
-      </div>
-      <div style="overflow-x:auto;margin-top:24px;">
-        <table style="width:100%;border-collapse:collapse;font-family:'Oswald',sans-serif;">
-          <thead>
-            <tr style="background:rgba(201,168,76,.15);border-bottom:2px solid var(--gold);">
-              <th style="padding:12px 8px;font-size:10px;letter-spacing:.2em;color:var(--gold);text-align:center;font-weight:400;">RNK</th>
-              <th style="padding:12px 8px;font-size:10px;letter-spacing:.2em;color:var(--gold);text-align:left;font-weight:400;">TEAM</th>
-              <th style="padding:12px 8px;font-size:10px;letter-spacing:.2em;color:var(--gold);text-align:center;font-weight:400;">PL</th>
-              <th style="padding:12px 8px;font-size:10px;letter-spacing:.2em;color:var(--gold);text-align:center;font-weight:400;">W-D-L</th>
-              <th style="padding:12px 8px;font-size:10px;letter-spacing:.2em;color:var(--gold);text-align:center;font-weight:400;">GF</th>
-              <th style="padding:12px 8px;font-size:10px;letter-spacing:.2em;color:var(--gold);text-align:center;font-weight:400;">GA</th>
-              <th style="padding:12px 8px;font-size:10px;letter-spacing:.2em;color:var(--gold);text-align:center;font-weight:400;">GD</th>
-              <th style="padding:12px 8px;font-size:10px;letter-spacing:.2em;color:var(--gold);text-align:center;font-weight:400;">PTS</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="border-bottom:1px solid rgba(201,168,76,.1);">
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.4);font-size:13px;">01</td>
-              <td style="padding:12px 8px;color:#fff;font-size:14px;font-weight:500;">DFW HIMALAYAS FC</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">9</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">7-0-2</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">40</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">15</td>
-              <td style="padding:12px 8px;text-align:center;color:#4caf72;font-size:13px;">+25</td>
-              <td style="padding:12px 8px;text-align:center;color:var(--gold);font-size:16px;font-weight:500;">21</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(201,168,76,.1);">
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.4);font-size:13px;">02</td>
-              <td style="padding:12px 8px;color:#fff;font-size:14px;font-weight:500;">PARBAT FC</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">9</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">7-0-2</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">36</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">15</td>
-              <td style="padding:12px 8px;text-align:center;color:#4caf72;font-size:13px;">+21</td>
-              <td style="padding:12px 8px;text-align:center;color:var(--gold);font-size:16px;font-weight:500;">21</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(201,168,76,.1);background:rgba(201,168,76,.06);">
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.4);font-size:13px;">03</td>
-              <td style="padding:12px 8px;font-size:14px;font-weight:500;"><span style="background:var(--gold);color:#0a0800;font-size:9px;padding:2px 6px;margin-right:8px;border-radius:2px;">GB</span><span style="color:var(--gold-l);">GOALBUSTER FC WHITE</span></td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">9</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">7-0-2</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">31</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">10</td>
-              <td style="padding:12px 8px;text-align:center;color:#4caf72;font-size:13px;">+21</td>
-              <td style="padding:12px 8px;text-align:center;color:var(--gold);font-size:16px;font-weight:500;">21</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(201,168,76,.1);">
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.4);font-size:13px;">04</td>
-              <td style="padding:12px 8px;color:#fff;font-size:14px;font-weight:500;">D-TOWN FC</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">9</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">6-1-2</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">37</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">15</td>
-              <td style="padding:12px 8px;text-align:center;color:#4caf72;font-size:13px;">+22</td>
-              <td style="padding:12px 8px;text-align:center;color:var(--gold);font-size:16px;font-weight:500;">19</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(201,168,76,.1);">
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.4);font-size:13px;">05</td>
-              <td style="padding:12px 8px;color:#fff;font-size:14px;font-weight:500;">EULESS ROYAL FC BLUE</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">9</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">5-1-3</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">29</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">20</td>
-              <td style="padding:12px 8px;text-align:center;color:#4caf72;font-size:13px;">+9</td>
-              <td style="padding:12px 8px;text-align:center;color:var(--gold);font-size:16px;font-weight:500;">16</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(201,168,76,.1);">
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.4);font-size:13px;">06</td>
-              <td style="padding:12px 8px;color:#fff;font-size:14px;font-weight:500;">FORT WORTH RISING FC</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">9</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">4-2-3</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">28</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">23</td>
-              <td style="padding:12px 8px;text-align:center;color:#4caf72;font-size:13px;">+5</td>
-              <td style="padding:12px 8px;text-align:center;color:var(--gold);font-size:16px;font-weight:500;">14</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(201,168,76,.1);background:rgba(201,168,76,.04);">
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.4);font-size:13px;">07</td>
-              <td style="padding:12px 8px;font-size:14px;font-weight:500;"><span style="background:var(--gold);color:#0a0800;font-size:9px;padding:2px 6px;margin-right:8px;border-radius:2px;">GB</span><span style="color:var(--gold-l);">GOALBUSTER FC RED</span></td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">9</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">2-1-6</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">23</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">31</td>
-              <td style="padding:12px 8px;text-align:center;color:#ff6b6b;font-size:13px;">-8</td>
-              <td style="padding:12px 8px;text-align:center;color:var(--gold);font-size:16px;font-weight:500;">7</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(201,168,76,.1);">
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.4);font-size:13px;">08</td>
-              <td style="padding:12px 8px;color:#fff;font-size:14px;font-weight:500;">EULESS UNITED FC</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">9</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">2-1-6</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">14</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">52</td>
-              <td style="padding:12px 8px;text-align:center;color:#ff6b6b;font-size:13px;">-38</td>
-              <td style="padding:12px 8px;text-align:center;color:var(--gold);font-size:16px;font-weight:500;">7</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(201,168,76,.1);">
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.4);font-size:13px;">09</td>
-              <td style="padding:12px 8px;color:#fff;font-size:14px;font-weight:500;">DALLAS GURKHAS FC</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">9</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">2-0-7</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">9</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">25</td>
-              <td style="padding:12px 8px;text-align:center;color:#ff6b6b;font-size:13px;">-16</td>
-              <td style="padding:12px 8px;text-align:center;color:var(--gold);font-size:16px;font-weight:500;">6</td>
-            </tr>
-            <tr>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.4);font-size:13px;">10</td>
-              <td style="padding:12px 8px;color:#fff;font-size:14px;font-weight:500;">EULESS ROYAL FC WHITE</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">9</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">0-0-9</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">12</td>
-              <td style="padding:12px 8px;text-align:center;color:rgba(255,255,255,.6);font-size:13px;">53</td>
-              <td style="padding:12px 8px;text-align:center;color:#ff6b6b;font-size:13px;">-41</td>
-              <td style="padding:12px 8px;text-align:center;color:var(--gold);font-size:16px;font-weight:500;">0</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- ═══ UNITY CUP 2026 ═══ -->
-<section class="unity-cup" id="unity-cup">
-  <div class="wrap">
-    <div class="unity-header">
+    <div class="gb-feature-grid">
       <div>
-        <div class="unity-badge"><span>✈️ Cincinnati, Ohio · June 2026 · 2nd Edition</span></div>
-        <div class="unity-title">The Unity <em>Cup</em> 2026</div>
-        <p class="unity-sub">Goal Busters FC travel to Cincinnati for the 2nd edition of The Unity Cup. Open Men's Division — Group D, Pole B. Three games. One goal. Bring it home.</p>
+        <img class="gb-feature-img" src="goalbuster-cup-2026-flyer.jpg" alt="Goalbuster Cup 2026 Flyer — December 19-20, 2026, Oak Grove Park Soccer Complex, Grapevine TX. Open Division $1,000, 35+ Division $800, 40+ Division $500. $20,000+ total prize pool.">
       </div>
-      <div class="unity-good-luck">
-        <div class="unity-good-luck-label">⚽ From the Club</div>
-        <div class="unity-good-luck-text">To every player making the trip to Cincinnati — the whole club is behind you. You've put in the work, you've earned your place on that pitch. Play with heart, play for each other, and make Goal Busters FC proud. Go get it, boys. 🖤💛</div>
+      <div>
+        <div class="gb-feature-badge">⭐ Texas ID Only · Dec 19–20, 2026</div>
+        <div class="sec-lbl">Hosted By Goal Busters FC</div>
+        <h2 class="sec-h">The Goalbuster <em>Cup</em> 2026</h2>
+        <p class="gb-feature-desc">
+          For 14 years we've played in everyone else's tournaments. This December, we're running our own.
+          <strong>The Goalbuster Cup is Goal Busters FC's first-ever hosted tournament</strong> — Open,
+          35+, and 40+ divisions, Texas players only, at Oak Grove Park Soccer Complex in Grapevine, TX.
+        </p>
+        <div class="gb-feature-facts">
+          <div class="gb-feature-fact">📅 <b>December 19–20, 2026</b> · Oak Grove Park Soccer Complex, Grapevine, TX</div>
+          <div class="gb-feature-fact">🏆 <b>$20,000+</b> total prize pool · cash, medals &amp; individual player awards</div>
+          <div class="gb-feature-fact">⚽ <b>Open $1,000 · 35+ $800 · 40+ $500</b> entry fees</div>
+          <div class="gb-feature-fact">🤝 Sponsorship &amp; vendor booths welcome</div>
+        </div>
+        <div class="gb-feature-actions">
+          <a href="#join" class="btn-gold">Register Interest</a>
+          <a href="mailto:fcgoalbusters@gmail.com" class="btn-ghost">Sponsor / Vendor Inquiries</a>
+        </div>
       </div>
     </div>
-    <div class="unity-layout">
-      <div class="unity-card">
-        <div class="unity-card-label">⚽ Group D Draw · Pole B</div>
-        <div class="unity-group-title">Group <span>D</span></div>
-        <div class="unity-group-sub">Open Men · Pole B</div>
-        <div class="unity-team-list">
-          <div class="unity-team"><span class="unity-team-pos">D1</span><span class="unity-team-name">Jhapa XI F.C</span></div>
-          <div class="unity-team"><span class="unity-team-pos">D2</span><span class="unity-team-name">Himalayan Lions</span></div>
-          <div class="unity-team us"><span class="unity-team-pos">D3</span><span class="unity-team-name">⭐ Goalbuster F.C</span></div>
-          <div class="unity-team"><span class="unity-team-pos">D4</span><span class="unity-team-name">Jhapa F.C</span></div>
-        </div>
-      </div>
-      <div class="unity-card">
-        <div class="unity-card-label">📅 Open Men Schedule</div>
-        <div class="unity-match-list">
-          <div class="unity-match">
-            <div class="unity-match-round">Friday Day 1 · R1 · Group D</div>
-            <div class="unity-match-opp">VS Jhapa F.C</div>
-            <div class="unity-match-meta"><span>⏰ 10:55 AM – 11:40 AM</span><span>📍 Cincinnati, OH</span></div>
-          </div>
-          <div class="unity-match">
-            <div class="unity-match-round">Friday Day 1 · R2 · Group D</div>
-            <div class="unity-match-opp">VS Jhapa XI F.C</div>
-            <div class="unity-match-meta"><span>⏰ 2:50 PM – 3:45 PM</span><span>📍 Cincinnati, OH</span></div>
-          </div>
-          <div class="unity-match">
-            <div class="unity-match-round">Saturday Day 2 · R3 · Group D</div>
-            <div class="unity-match-opp">VS Himalayan Lions</div>
-            <div class="unity-match-meta"><span>⏰ 10:50 AM – 11:35 AM</span><span>📍 Cincinnati, OH</span></div>
-          </div>
-          <div class="unity-match" style="border-left-color:var(--mint);">
-            <div class="unity-match-round" style="color:var(--mint);">Saturday Day 2 · Knockout Stage</div>
-            <div class="unity-match-opp">Quarterfinals / Semis / Final</div>
-            <div class="unity-match-meta"><span>⏰ TBD based on group finish</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="unity-roster-wrap">
-        <div class="unity-card-label">👕 Squad Roster — Unity Cup 2026</div>
-        <img class="unity-roster-img" src="https://res.cloudinary.com/dlm10vyhl/image/upload/v1781625137/Teamroster_etdcgh.jpg" alt="Goal Busters FC Unity Cup 2026 Roster">
-      </div>
-      <div class="unity-sponsors-wrap">
-        <div class="unity-card-label">🙏 Unity Cup Sponsors — Thank You</div>
-        <div style="border-left:3px solid var(--gold);padding:24px 32px;background:rgba(201,168,76,.04);margin-top:4px;">
-  <div style="font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">✈️ A Historic Moment — Goal Busters FC First Out-of-State Trip</div>
-  <p style="font-family:'Crimson Pro',serif;font-size:19px;font-style:italic;color:rgba(255,255,255,.75);line-height:1.85;margin:0;">For 14 years this club has called Dallas home — competing, winning, and building something special right here in DFW. Cincinnati is the next chapter. And it only happens because of three people who believed in this club enough to make it possible: <strong style="color:var(--gold-l);font-style:normal;">Amit, Fuba, and Bijay</strong> — three pillars of this club who have given their time, their heart, and now their generosity to send this team across state lines. This one means more than a result. This club runs on people like you. Thank you. 🖤💛</p>
-</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ UPCOMING GAMES ═══ -->
-<section class="upcoming" id="upcoming">
-  <div class="wrap">
-    <div class="sec-lbl">What's Next</div>
-    <h2 class="sec-h">Upcoming <em>Fixtures</em></h2>
-    <div class="upcoming-container">
-     <div class="fixture-tile" style="border-color:rgba(201,168,76,.45);">
-        <span class="fixture-week" style="color:var(--gold-l);">Unity Cup · R1</span>
-        <div class="fixture-date">Friday, June 2026 · Day 1</div>
-        <div class="fixture-match">
-          <span class="fixture-team-badge">GB Open Men</span>
-          <div class="fixture-vs-container"><div class="fixture-opponent">VS Jhapa F.C</div></div>
-          <div class="fixture-details">
-            <div class="fixture-detail"><strong>Time:</strong> <span>10:55 AM – 11:40 AM</span></div>
-            <div class="fixture-detail"><strong>Venue:</strong> <span>Cincinnati, Ohio</span></div>
-            <div class="fixture-detail"><strong>Group:</strong> <span>Group D · Round 1</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="fixture-tile" style="border-color:rgba(201,168,76,.45);">
-        <span class="fixture-week" style="color:var(--gold-l);">Unity Cup · R2</span>
-        <div class="fixture-date">Friday, June 2026 · Day 1</div>
-        <div class="fixture-match">
-          <span class="fixture-team-badge">GB Open Men</span>
-          <div class="fixture-vs-container"><div class="fixture-opponent">VS Jhapa XI F.C</div></div>
-          <div class="fixture-details">
-            <div class="fixture-detail"><strong>Time:</strong> <span>2:50 PM – 3:45 PM</span></div>
-            <div class="fixture-detail"><strong>Venue:</strong> <span>Cincinnati, Ohio</span></div>
-            <div class="fixture-detail"><strong>Group:</strong> <span>Group D · Round 2</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="fixture-tile" style="border-color:rgba(201,168,76,.45);">
-        <span class="fixture-week" style="color:var(--gold-l);">Unity Cup · R3</span>
-        <div class="fixture-date">Saturday, June 2026 · Day 2</div>
-        <div class="fixture-match">
-          <span class="fixture-team-badge">GB Open Men</span>
-          <div class="fixture-vs-container"><div class="fixture-opponent">VS Himalayan Lions</div></div>
-          <div class="fixture-details">
-            <div class="fixture-detail"><strong>Time:</strong> <span>10:50 AM – 11:35 AM</span></div>
-            <div class="fixture-detail"><strong>Venue:</strong> <span>Cincinnati, Ohio</span></div>
-            <div class="fixture-detail"><strong>Group:</strong> <span>Group D · Round 3</span></div>
-          </div>
-        </div>
-      </div>
   </div>
 </section>
 
@@ -1335,19 +1038,12 @@ footer{background:#040404;padding:68px 52px 34px;border-top:1px solid var(--line
     <div class="sec-lbl">Latest</div>
     <h2 class="sec-h">News &amp; <em>Updates</em></h2>
     <div class="n-grid">
-      <div class="n-card" style="border-color:rgba(201,168,76,.4);background:linear-gradient(160deg,#06060f,#080810);">
-        <div style="background:linear-gradient(135deg,#06060f,#0a0a18);min-height:160px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(201,168,76,.2);margin-bottom:22px;">
-          <div style="text-align:center;padding:20px;">
-            <div style="font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.3em;color:rgba(201,168,76,.5);margin-bottom:8px;">2ND EDITION</div>
-            <div style="font-family:'Oswald',sans-serif;font-size:36px;font-weight:700;color:var(--gold);letter-spacing:.04em;line-height:1;">THE UNITY CUP</div>
-            <div style="font-family:'Oswald',sans-serif;font-size:13px;color:rgba(255,255,255,.3);letter-spacing:.2em;margin-top:6px;">CINCINNATI, OHIO</div>
-            <div style="font-size:28px;margin-top:12px;">🏆✈️</div>
-          </div>
-        </div>
-        <span class="n-tag">✈️ Tournament · Cincinnati, OH · June 2026</span>
-        <div class="n-title">Goal Busters Head to Cincinnati for Unity Cup 2026</div>
-        <div class="n-body">Open Men's Division — Group D, Pole B. Three group games Friday and Saturday. Special thanks to Amit, Fuba, and Bijay for making this trip possible.</div>
-        <span class="n-date">June 2026</span>
+      <div class="n-card" style="border-color:var(--gold);background:linear-gradient(160deg,#100d02,#0a0a0a);">
+        <img class="n-ph" src="goalbuster-cup-2026-flyer.jpg" alt="Goalbuster Cup 2026 Flyer">
+        <span class="n-tag">🆕 NEW · Our Club's First Hosted Tournament</span>
+        <div class="n-title">Announcing the Goalbuster Cup 2026</div>
+        <div class="n-body">For the first time in our 14-year history, Goal Busters FC is hosting our own tournament. The Goalbuster Cup runs December 19–20, 2026 at Oak Grove Park Soccer Complex in Grapevine, TX — Open, 35+ and 40+ divisions, Texas ID only, with a $20,000+ total prize pool. <a href="#goalbuster-cup" style="color:var(--gold);">See full details →</a></div>
+        <span class="n-date">December 2026</span>
       </div>
       <div class="n-card feat">
         <img class="n-ph" src="https://res.cloudinary.com/dlm10vyhl/image/upload/v1779220808/553989566_1322828652962871_5897749810317406542_n_cbvafz.jpg" alt="14th Gurkha Cup">
@@ -1559,7 +1255,7 @@ document.getElementById('contact-form').addEventListener('submit',function(e){
 });
 document.getElementById('navBurger').addEventListener('click',function(){document.getElementById('navLinks').classList.toggle('open');});
 document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
-document.querySelectorAll('.g-item img').forEach(img => {
+document.querySelectorAll('.g-item img, .gb-feature-img').forEach(img => {
   img.style.cursor = 'pointer';
   img.addEventListener('click', () => {
     document.getElementById('lightbox-img').src = img.src;
