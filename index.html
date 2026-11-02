@@ -666,6 +666,10 @@ footer{background:#040404;padding:68px 52px 34px;border-top:1px solid var(--line
 </div>
 
 <div id="cur"></div><div id="ring"></div>
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
 
 <!-- ═══ NAV ═══ -->
 <nav>
@@ -1328,9 +1332,5 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox
   }, 500);
 })();
 </script>
-  <div class="lightbox" id="lightbox">
-    <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
-    <img id="lightbox-img" src="" alt="">
-  </div>
   </body>
   </html>
