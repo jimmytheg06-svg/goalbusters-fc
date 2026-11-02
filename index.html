@@ -639,9 +639,113 @@ footer{background:#040404;padding:68px 52px 34px;border-top:1px solid var(--line
   .sp-plat{grid-template-columns:1fr;}
   .h-crest{width:180px;height:180px;}
 }
+
+/* ─── GOALBUSTER CUP 2026 POPUP ─── */
+.gbcup-backdrop{position:fixed;inset:0;z-index:20000;background:rgba(3,3,3,.82);
+  backdrop-filter:blur(6px);display:flex;align-items:flex-start;justify-content:center;
+  padding:0;opacity:0;pointer-events:none;transition:opacity .35s ease;overflow-y:auto;}
+.gbcup-backdrop.show{opacity:1;pointer-events:all;}
+.gbcup-modal{width:100%;max-width:640px;margin:0 18px;background:linear-gradient(165deg,#0c0c0c,#121008 60%,#161200);
+  border:1px solid var(--gold);border-top:none;border-radius:0 0 14px 14px;
+  padding:40px 40px 34px;position:relative;overflow:hidden;
+  transform:translateY(-130%);transition:transform .6s cubic-bezier(.16,1,.3,1);
+  box-shadow:0 30px 80px rgba(0,0,0,.6);}
+.gbcup-backdrop.show .gbcup-modal{transform:translateY(0);}
+.gbcup-modal::before{content:'';position:absolute;top:-200px;right:-200px;width:420px;height:420px;
+  border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.12),transparent 65%);pointer-events:none;}
+.gbcup-close{position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;
+  border:1px solid rgba(201,168,76,.3);background:rgba(255,255,255,.03);color:rgba(255,255,255,.7);
+  font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .2s;z-index:2;}
+.gbcup-close:hover{border-color:var(--gold);color:var(--gold-l);background:rgba(201,168,76,.1);}
+.gbcup-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,50,50,.18);
+  border:1px solid rgba(200,50,50,.4);color:#ff8a8a;padding:5px 14px;border-radius:20px;
+  font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;margin-bottom:18px;position:relative;z-index:1;}
+.gbcup-title{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(34px,6vw,48px);
+  letter-spacing:.03em;line-height:.95;color:var(--white);text-transform:uppercase;
+  position:relative;z-index:1;}
+.gbcup-title span{background:linear-gradient(135deg,var(--gold-l),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.gbcup-sub{font-family:'Oswald',sans-serif;font-size:12px;font-weight:400;letter-spacing:.42em;
+  text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:6px;position:relative;z-index:1;}
+.gbcup-meta{margin-top:22px;display:flex;flex-direction:column;gap:9px;position:relative;z-index:1;}
+.gbcup-meta-item{font-family:'Crimson Pro',serif;font-size:16px;font-style:italic;
+  color:rgba(255,255,255,.75);}
+.gbcup-countdown{display:flex;gap:10px;margin-top:26px;position:relative;z-index:1;}
+.gbcup-cd-item{flex:1;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.25);
+  border-radius:8px;padding:12px 4px;text-align:center;}
+.gbcup-cd-num{display:block;font-family:'Oswald',sans-serif;font-size:26px;font-weight:700;
+  color:var(--gold-l);line-height:1;}
+.gbcup-cd-lbl{display:block;font-family:'Oswald',sans-serif;font-size:9px;font-weight:300;
+  letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:5px;}
+.gbcup-spotlight{margin-top:24px;border-left:3px solid var(--spot-color,var(--gold));
+  background:rgba(255,255,255,.03);padding:16px 20px;border-radius:0 8px 8px 0;
+  position:relative;z-index:1;transition:border-color .3s;}
+.gbcup-spotlight-lbl{font-family:'Oswald',sans-serif;font-size:9px;font-weight:600;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--spot-color,var(--gold));margin-bottom:6px;}
+.gbcup-spotlight-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;}
+.gbcup-spotlight-name{font-family:'Oswald',sans-serif;font-size:20px;font-weight:600;
+  letter-spacing:.04em;color:var(--white);text-transform:uppercase;}
+.gbcup-spotlight-fee{font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;color:var(--spot-color,var(--gold));}
+.gbcup-prize{margin-top:22px;font-family:'Oswald',sans-serif;font-size:32px;font-weight:700;
+  color:var(--gold-l);position:relative;z-index:1;}
+.gbcup-prize span{display:block;font-size:10px;font-weight:300;letter-spacing:.22em;
+  text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:4px;}
+.gbcup-actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;position:relative;z-index:1;}
+.gbcup-btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--ink);
+  padding:14px 28px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-radius:4px;
+  transition:transform .2s;}
+.gbcup-btn-gold:hover{transform:translateY(-2px);}
+.gbcup-btn-ghost{border:1.5px solid rgba(201,168,76,.35);color:rgba(255,255,255,.7);
+  padding:14px 28px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:400;
+  letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-radius:4px;
+  transition:all .2s;}
+.gbcup-btn-ghost:hover{border-color:var(--gold);color:var(--gold-l);}
+.gbcup-foot{margin-top:22px;font-family:'Crimson Pro',serif;font-size:12px;font-style:italic;
+  color:rgba(255,255,255,.3);position:relative;z-index:1;}
+@media(max-width:600px){
+  .gbcup-modal{padding:32px 24px 26px;}
+  .gbcup-countdown{flex-wrap:wrap;}
+  .gbcup-cd-item{min-width:60px;}
+}
 </style>
 </head>
 <body>
+<!-- ═══ GOALBUSTER CUP 2026 POPUP ═══ -->
+<div class="gbcup-backdrop" id="gbcupBackdrop">
+  <div class="gbcup-modal" id="gbcupModal">
+    <button class="gbcup-close" id="gbcupClose" aria-label="Close">&times;</button>
+    <div class="gbcup-badge">⭐ Texas ID Only</div>
+    <h1 class="gbcup-title">Goalbuster <span>Cup</span> 2026</h1>
+    <div class="gbcup-sub">Soccer Tournament</div>
+    <div class="gbcup-meta">
+      <div class="gbcup-meta-item">📅 December 19–20, 2026</div>
+      <div class="gbcup-meta-item">📍 Oak Grove Park Soccer Complex, Grapevine, TX</div>
+    </div>
+    <div class="gbcup-countdown" id="gbcupCountdown">
+      <div class="gbcup-cd-item"><span class="gbcup-cd-num" id="gbcupDays">00</span><span class="gbcup-cd-lbl">Days</span></div>
+      <div class="gbcup-cd-item"><span class="gbcup-cd-num" id="gbcupHours">00</span><span class="gbcup-cd-lbl">Hrs</span></div>
+      <div class="gbcup-cd-item"><span class="gbcup-cd-num" id="gbcupMins">00</span><span class="gbcup-cd-lbl">Min</span></div>
+      <div class="gbcup-cd-item"><span class="gbcup-cd-num" id="gbcupSecs">00</span><span class="gbcup-cd-lbl">Sec</span></div>
+    </div>
+    <div class="gbcup-spotlight" id="gbcupSpotlight">
+      <div class="gbcup-spotlight-lbl" id="gbcupSpotlightLbl">Today's Spotlight</div>
+      <div class="gbcup-spotlight-row">
+        <span class="gbcup-spotlight-name" id="gbcupSpotlightName">Open Division</span>
+        <span class="gbcup-spotlight-fee" id="gbcupSpotlightFee">$1,000</span>
+      </div>
+    </div>
+    <div class="gbcup-prize">$20,000+<span>Total Prize Pool · Cash · Medals · Player Awards</span></div>
+    <div class="gbcup-actions">
+      <a href="#join" class="gbcup-btn-gold" id="gbcupRegisterBtn">Register Interest</a>
+      <a href="mailto:fcgoalbusters@gmail.com" class="gbcup-btn-ghost">Email Us</a>
+    </div>
+    <div class="gbcup-foot">www.fcgoalbusters.com · fcgoalbusters@gmail.com</div>
+  </div>
+</div>
+
 <div id="cur"></div><div id="ring"></div>
 
 <!-- ═══ NAV ═══ -->
@@ -1471,6 +1575,67 @@ document.getElementById('lightbox').addEventListener('click', function(e) {
   if(e.target === this) closeLightbox();
 });
 document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+</script>
+<script>
+(function(){
+  var TARGET = new Date('2026-12-19T08:00:00-06:00'); // Goalbuster Cup 2026 kickoff, Grapevine TX (Central Time)
+  var backdrop = document.getElementById('gbcupBackdrop');
+  var closeBtn = document.getElementById('gbcupClose');
+  var storageKey = 'gbcup_popup_shown';
+  var today = new Date();
+  var todayKey = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
+  function closePopup(){
+    backdrop.classList.remove('show');
+    document.body.style.overflow = '';
+    try { localStorage.setItem(storageKey, todayKey); } catch(e){}
+  }
+  closeBtn.addEventListener('click', closePopup);
+  backdrop.addEventListener('click', function(e){ if(e.target === backdrop) closePopup(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && backdrop.classList.contains('show')) closePopup(); });
+
+  var alreadyShownToday = false;
+  try { alreadyShownToday = localStorage.getItem(storageKey) === todayKey; } catch(e){}
+
+  // Daily division spotlight — rotates automatically through the three divisions, same for every visitor on a given day
+  var divisions = [
+    { name: 'Open Division', fee: '$1,000', color: '#c9a84c' },
+    { name: '35+ Division',  fee: '$800',   color: '#4caf72' },
+    { name: '40+ Division',  fee: '$500',   color: '#e8c96a' }
+  ];
+  var startOfYear = new Date(today.getFullYear(), 0, 0);
+  var dayOfYear = Math.floor((today - startOfYear) / 86400000);
+  var spotlight = divisions[dayOfYear % divisions.length];
+  document.getElementById('gbcupSpotlightName').textContent = spotlight.name;
+  document.getElementById('gbcupSpotlightFee').textContent = spotlight.fee;
+  document.getElementById('gbcupSpotlightFee').style.color = spotlight.color;
+  document.getElementById('gbcupSpotlight').style.setProperty('--spot-color', spotlight.color);
+  document.getElementById('gbcupSpotlightLbl').style.color = spotlight.color;
+
+  // Live countdown
+  var cdEl = document.getElementById('gbcupCountdown');
+  function tick(){
+    var diff = TARGET - new Date();
+    if (diff <= 0){
+      cdEl.innerHTML = '<div style="font-family:\'Oswald\',sans-serif;font-size:16px;letter-spacing:.1em;color:var(--gold-l);text-transform:uppercase;width:100%;text-align:center;">Tournament Weekend Is Here! 🏆</div>';
+      clearInterval(timer);
+      return;
+    }
+    document.getElementById('gbcupDays').textContent = String(Math.floor(diff / 86400000)).padStart(2, '0');
+    document.getElementById('gbcupHours').textContent = String(Math.floor(diff % 86400000 / 3600000)).padStart(2, '0');
+    document.getElementById('gbcupMins').textContent = String(Math.floor(diff % 3600000 / 60000)).padStart(2, '0');
+    document.getElementById('gbcupSecs').textContent = String(Math.floor(diff % 60000 / 1000)).padStart(2, '0');
+  }
+  tick();
+  var timer = setInterval(tick, 1000);
+
+  if (!alreadyShownToday){
+    setTimeout(function(){
+      backdrop.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }, 500);
+  }
+})();
 </script>
   <div class="lightbox" id="lightbox">
     <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
