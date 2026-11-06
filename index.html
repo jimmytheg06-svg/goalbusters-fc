@@ -1313,6 +1313,11 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox
   document.getElementById('gbcupSpotlight').style.setProperty('--spot-color', spotlight.color);
   document.getElementById('gbcupSpotlightLbl').style.color = spotlight.color;
 
+  // Daily background photo — rotates through 6 grayscale soccer field/action photos, same for every visitor on a given day
+  var bgPhotos = ['bg-field-1.jpg', 'bg-field-2.jpg', 'bg-field-3.jpg', 'bg-field-4.jpg', 'bg-field-5.jpg', 'bg-field-6.jpg'];
+  var todaysPhoto = bgPhotos[dayOfYear % bgPhotos.length];
+  document.getElementById('gbcupTileBg').style.backgroundImage = "url('" + todaysPhoto + "')";
+
   // Live countdown
   var cdEl = document.getElementById('gbcupCountdown');
   function tick(){
