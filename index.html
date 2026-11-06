@@ -567,9 +567,11 @@ footer{background:#040404;padding:68px 52px 34px;border-top:1px solid var(--line
   transform:translateX(115%);transition:transform .55s cubic-bezier(.16,1,.3,1);
   box-shadow:-12px 20px 50px rgba(0,0,0,.55);}
 .gbcup-tile.show{transform:translateX(0);}
-.gbcup-tile-bg{position:absolute;inset:0;background-image:url('https://res.cloudinary.com/dlm10vyhl/image/upload/v1779228594/GBlogo_clean_eyyjwe.png');
-  background-size:78%;background-repeat:no-repeat;background-position:center 60%;
-  opacity:.08;pointer-events:none;filter:grayscale(.2);}
+.gbcup-tile-bg{position:absolute;inset:0;background-image:url('bg-field-1.jpg');
+  background-size:cover;background-position:center;pointer-events:none;
+  filter:grayscale(1) brightness(.72) contrast(1.08);transition:background-image .4s ease;}
+.gbcup-tile-scrim{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(165deg,rgba(10,9,2,.84) 0%,rgba(10,9,2,.6) 42%,rgba(10,9,2,.92) 100%);}
 .gbcup-tile-content{position:relative;z-index:1;}
 .gbcup-close{position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:50%;
   border:1px solid rgba(201,168,76,.3);background:rgba(255,255,255,.04);color:rgba(255,255,255,.7);
@@ -633,7 +635,8 @@ footer{background:#040404;padding:68px 52px 34px;border-top:1px solid var(--line
 <body>
 <!-- ═══ GOALBUSTER CUP 2026 SIDE TILE ═══ -->
 <div class="gbcup-tile" id="gbcupTile">
-  <div class="gbcup-tile-bg"></div>
+  <div class="gbcup-tile-bg" id="gbcupTileBg"></div>
+  <div class="gbcup-tile-scrim"></div>
   <div class="gbcup-tile-content">
     <button class="gbcup-close" id="gbcupClose" aria-label="Close">&times;</button>
     <div class="gbcup-badge">⭐ Texas ID Only</div>
