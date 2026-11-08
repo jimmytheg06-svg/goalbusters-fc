@@ -610,7 +610,8 @@ footer{background:#040404;padding:68px 52px 34px;border-top:1px solid var(--line
 .gbcup-spotlight-fee{font-family:'Oswald',sans-serif;font-size:15px;font-weight:700;color:var(--spot-color,var(--gold));}
 .gbcup-prize{margin-top:16px;font-family:'Oswald',sans-serif;font-size:24px;font-weight:700;
   color:var(--gold-l);}
-.gbcup-prize span{display:block;font-size:8px;font-weight:300;letter-spacing:.16em;
+.gbcup-prize #gbcupPrizeAmount{display:block;}
+.gbcup-prize #gbcupPrizeLabel{display:block;font-size:8px;font-weight:300;letter-spacing:.16em;
   text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:3px;}
 .gbcup-actions{display:flex;flex-direction:column;gap:9px;margin-top:20px;}
 .gbcup-btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--ink);
@@ -660,7 +661,7 @@ footer{background:#040404;padding:68px 52px 34px;border-top:1px solid var(--line
         <span class="gbcup-spotlight-fee" id="gbcupSpotlightFee">$1,000</span>
       </div>
     </div>
-    <div class="gbcup-prize">$20,000+<span>Total Prize Pool</span></div>
+    <div class="gbcup-prize"><span id="gbcupPrizeAmount">$8,000</span><span id="gbcupPrizeLabel">Winner's Prize · Open Division</span></div>
     <div class="gbcup-actions">
       <a href="https://clubverseapp.com/t/goalbuster-cup-2026" target="_blank" rel="noopener" class="gbcup-btn-gold" id="gbcupRegisterBtn">Register Interest</a>
       <a href="mailto:fcgoalbusters@gmail.com" class="gbcup-btn-ghost">Email Us</a>
@@ -1302,9 +1303,9 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox
 
   // Daily division spotlight — rotates automatically through the three divisions, same for every visitor on a given day
   var divisions = [
-    { name: 'Open Division', fee: '$1,000', color: '#c9a84c' },
-    { name: '35+ Division',  fee: '$800',   color: '#4caf72' },
-    { name: '40+ Division',  fee: '$500',   color: '#e8c96a' }
+    { name: 'Open Division', fee: '$1,000', color: '#c9a84c', prize: '$8,000' },
+    { name: '35+ Division',  fee: '$800',   color: '#4caf72', prize: '$5,000' },
+    { name: '40+ Division',  fee: '$500',   color: '#e8c96a', prize: '$1,500' }
   ];
   var startOfYear = new Date(today.getFullYear(), 0, 0);
   var dayOfYear = Math.floor((today - startOfYear) / 86400000);
@@ -1314,6 +1315,8 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox
   document.getElementById('gbcupSpotlightFee').style.color = spotlight.color;
   document.getElementById('gbcupSpotlight').style.setProperty('--spot-color', spotlight.color);
   document.getElementById('gbcupSpotlightLbl').style.color = spotlight.color;
+  document.getElementById('gbcupPrizeAmount').textContent = spotlight.prize;
+  document.getElementById('gbcupPrizeLabel').textContent = "Winner's Prize · " + spotlight.name;
 
   // Daily background photo — rotates through 6 grayscale soccer field/action photos, same for every visitor on a given day
   var bgPhotos = ['bg-field-1.jpg', 'bg-field-2.jpg', 'bg-field-3.jpg', 'bg-field-4.jpg', 'bg-field-5.jpg', 'bg-field-6.jpg'];
