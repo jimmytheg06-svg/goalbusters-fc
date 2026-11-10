@@ -424,7 +424,7 @@ nav{position:fixed;top:51px;left:0;right:0;width:100%;z-index:600;
 .clubs-wall{background:var(--ink2);padding:100px 52px;border-top:1px solid var(--line);}
 .clubs-sub{font-family:'Crimson Pro',serif;font-size:18px;font-style:italic;
   color:rgba(255,255,255,.4);max-width:520px;margin-top:14px;line-height:1.7;}
-.locker-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:56px;}
+.locker-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px;}
 .locker{background:linear-gradient(170deg,#161616,#0a0a0a);border:2px solid rgba(201,168,76,.22);
   border-radius:3px;overflow:hidden;position:relative;transition:transform .3s,border-color .3s,box-shadow .3s;}
 .locker:hover{transform:translateY(-8px);border-color:var(--gold);box-shadow:0 16px 36px rgba(0,0,0,.5);}
@@ -444,8 +444,12 @@ nav{position:fixed;top:51px;left:0;right:0;width:100%;z-index:600;
   min-height:14px;}
 .locker.open .locker-plate{background:transparent;border:1px dashed rgba(201,168,76,.3);
   color:rgba(201,168,76,.4);box-shadow:none;}
-.locker-division{font-family:'Oswald',sans-serif;font-size:8px;font-weight:400;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--gold);opacity:.8;}
+.locker-group{margin-top:48px;}
+.locker-group:first-child{margin-top:0;}
+.locker-group-h{display:flex;align-items:center;gap:14px;font-family:'Oswald',sans-serif;font-size:13px;
+  font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);}
+.locker-group-h::after{content:'';flex:1;height:1px;background:rgba(201,168,76,.25);}
+.locker-group .locker-grid{margin-top:22px;}
 @media(max-width:900px){.locker-grid{grid-template-columns:repeat(3,1fr);}}
 
 /* ─── RECENT RESULTS ─── */
@@ -850,20 +854,37 @@ footer{background:#040404;padding:68px 52px 34px;border-top:1px solid var(--line
     <div class="sec-lbl">Who's In</div>
     <h2 class="sec-h">Participating <em>Clubs</em></h2>
     <p class="clubs-sub">Teams registered for the GoalBuster Cup 2026 — claim your locker as registrations come through ClubVerse. Register by December 12.</p>
-    <div class="locker-grid">
-      <div class="locker filled"><div class="locker-vents"></div><div class="locker-number">01</div><div class="locker-body"><div class="locker-crest"><img src="crest-dfw-himalayas-fc.jpg" alt="DFW Himalayas FC"></div><div class="locker-plate">DFW Himalayas FC</div><div class="locker-division">35+ Division</div></div></div>
-      <div class="locker filled"><div class="locker-vents"></div><div class="locker-number">02</div><div class="locker-body"><div class="locker-crest"><img src="crest-dfw-himalayas-fc.jpg" alt="DFW Himalayas FC"></div><div class="locker-plate">DFW Himalayas FC</div><div class="locker-division">40+ Division</div></div></div>
-      <div class="locker filled"><div class="locker-vents"></div><div class="locker-number">03</div><div class="locker-body"><div class="locker-crest"><img src="crest-houston-cobras.jpg" alt="Houston Cobras"></div><div class="locker-plate">Houston Cobras</div><div class="locker-division">35+ Division</div></div></div>
-      <div class="locker filled"><div class="locker-vents"></div><div class="locker-number">04</div><div class="locker-body"><div class="locker-crest"><img src="https://res.cloudinary.com/dlm10vyhl/image/upload/v1779228594/GBlogo_clean_eyyjwe.png" alt="GoalBuster FC"></div><div class="locker-plate">GoalBuster FC</div><div class="locker-division">Open Division</div></div></div>
-      <div class="locker filled"><div class="locker-vents"></div><div class="locker-number">05</div><div class="locker-body"><div class="locker-crest"><img src="https://res.cloudinary.com/dlm10vyhl/image/upload/v1779228594/GBlogo_clean_eyyjwe.png" alt="GoalBuster FC"></div><div class="locker-plate">GoalBuster FC</div><div class="locker-division">35+ Division</div></div></div>
-      <div class="locker filled"><div class="locker-vents"></div><div class="locker-number">06</div><div class="locker-body"><div class="locker-crest"><img src="https://res.cloudinary.com/dlm10vyhl/image/upload/v1779228594/GBlogo_clean_eyyjwe.png" alt="GoalBuster FC"></div><div class="locker-plate">GoalBuster FC</div><div class="locker-division">40+ Division</div></div></div>
-      <div class="locker open"><div class="locker-vents"></div><div class="locker-number">07</div><div class="locker-body"><div class="locker-crest">+</div><div class="locker-plate">Open</div></div></div>
-      <div class="locker open"><div class="locker-vents"></div><div class="locker-number">08</div><div class="locker-body"><div class="locker-crest">+</div><div class="locker-plate">Open</div></div></div>
-      <div class="locker open"><div class="locker-vents"></div><div class="locker-number">09</div><div class="locker-body"><div class="locker-crest">+</div><div class="locker-plate">Open</div></div></div>
-      <div class="locker open"><div class="locker-vents"></div><div class="locker-number">10</div><div class="locker-body"><div class="locker-crest">+</div><div class="locker-plate">Open</div></div></div>
-      <div class="locker open"><div class="locker-vents"></div><div class="locker-number">11</div><div class="locker-body"><div class="locker-crest">+</div><div class="locker-plate">Open</div></div></div>
-      <div class="locker open"><div class="locker-vents"></div><div class="locker-number">12</div><div class="locker-body"><div class="locker-crest">+</div><div class="locker-plate">Open</div></div></div>
+
+    <div class="locker-group">
+      <div class="locker-group-h">Open Division</div>
+      <div class="locker-grid">
+        <div class="locker filled"><div class="locker-vents"></div><div class="locker-number">01</div><div class="locker-body"><div class="locker-crest"><img src="https://res.cloudinary.com/dlm10vyhl/image/upload/v1779228594/GBlogo_clean_eyyjwe.png" alt="GoalBuster FC"></div><div class="locker-plate">GoalBuster FC</div></div></div>
+        <div class="locker open"><div class="locker-vents"></div><div class="locker-number">02</div><div class="locker-body"><div class="locker-crest">+</div><div class="locker-plate">Open</div></div></div>
+        <div class="locker open"><div class="locker-vents"></div><div class="locker-number">03</div><div class="locker-body"><div class="locker-crest">+</div><div class="locker-plate">Open</div></div></div>
+        <div class="locker open"><div class="locker-vents"></div><div class="locker-number">04</div><div class="locker-body"><div class="locker-crest">+</div><div class="locker-plate">Open</div></div></div>
+      </div>
     </div>
+
+    <div class="locker-group">
+      <div class="locker-group-h">35+ Division</div>
+      <div class="locker-grid">
+        <div class="locker filled"><div class="locker-vents"></div><div class="locker-number">05</div><div class="locker-body"><div class="locker-crest"><img src="crest-dfw-himalayas-fc.jpg" alt="DFW Himalayas FC"></div><div class="locker-plate">DFW Himalayas FC</div></div></div>
+        <div class="locker filled"><div class="locker-vents"></div><div class="locker-number">06</div><div class="locker-body"><div class="locker-crest"><img src="crest-houston-cobras.jpg" alt="Houston Cobras"></div><div class="locker-plate">Houston Cobras</div></div></div>
+        <div class="locker filled"><div class="locker-vents"></div><div class="locker-number">07</div><div class="locker-body"><div class="locker-crest"><img src="https://res.cloudinary.com/dlm10vyhl/image/upload/v1779228594/GBlogo_clean_eyyjwe.png" alt="GoalBuster FC"></div><div class="locker-plate">GoalBuster FC</div></div></div>
+        <div class="locker open"><div class="locker-vents"></div><div class="locker-number">08</div><div class="locker-body"><div class="locker-crest">+</div><div class="locker-plate">Open</div></div></div>
+      </div>
+    </div>
+
+    <div class="locker-group">
+      <div class="locker-group-h">40+ Division</div>
+      <div class="locker-grid">
+        <div class="locker filled"><div class="locker-vents"></div><div class="locker-number">09</div><div class="locker-body"><div class="locker-crest"><img src="crest-dfw-himalayas-fc.jpg" alt="DFW Himalayas FC"></div><div class="locker-plate">DFW Himalayas FC</div></div></div>
+        <div class="locker filled"><div class="locker-vents"></div><div class="locker-number">10</div><div class="locker-body"><div class="locker-crest"><img src="https://res.cloudinary.com/dlm10vyhl/image/upload/v1779228594/GBlogo_clean_eyyjwe.png" alt="GoalBuster FC"></div><div class="locker-plate">GoalBuster FC</div></div></div>
+        <div class="locker open"><div class="locker-vents"></div><div class="locker-number">11</div><div class="locker-body"><div class="locker-crest">+</div><div class="locker-plate">Open</div></div></div>
+        <div class="locker open"><div class="locker-vents"></div><div class="locker-number">12</div><div class="locker-body"><div class="locker-crest">+</div><div class="locker-plate">Open</div></div></div>
+      </div>
+    </div>
+
   </div>
 </section>
 
