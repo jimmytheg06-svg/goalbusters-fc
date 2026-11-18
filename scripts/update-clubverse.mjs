@@ -34,8 +34,14 @@ function isUs(team) {
 
 // Known opponent crests already hosted in this repo. Extend this as more
 // opponents' logos are added — anything not listed here falls back to
-// initials, which is safe.
-const TEAM_LOGO = {};
+// initials, which is safe. "D-Town FC White/Blue" and "Euless United" are
+// the same real-world clubs that play in the sibling D-Town 40+ League, so
+// these reuse North Texans Football Group's existing crest art.
+const TEAM_LOGO = {
+  "D-Town FC White": "crest-dtown-fc.png",
+  "D-Town FC Blue": "crest-dtown-fc.png",
+  "Euless United": "crest-euless-united.png",
+};
 
 function displayName(team) {
   if (isUs(team)) return OUR_DISPLAY_NAME;
@@ -249,6 +255,13 @@ function renderTicker({ completed, next }) {
   return `${once}\n    ${once}`;
 }
 
+function resultSide(team) {
+  return `<div class="result-side">
+              <div class="result-crest">${monoBadge(team)}</div>
+              <div class="result-team">${displayName(team)}</div>
+            </div>`;
+}
+
 function renderMatches({ last, next }) {
   const cards = [];
 
@@ -260,9 +273,9 @@ function renderMatches({ last, next }) {
     cards.push(`<div class="result-card reveal">
           <div class="result-date">Last Result · ${fixtureDateShort(last.fixture)}</div>
           <div class="result-matchup">
-            <div class="result-team">${OUR_DISPLAY_NAME}</div>
+            ${resultSide(OUR_DISPLAY_NAME)}
             <div class="result-score">${last.us}–${last.them}</div>
-            <div class="result-team">${displayName(last.opponent)}</div>
+            ${resultSide(last.opponent)}
           </div>
           <div class="result-status${statusCls}">${statusLabel}</div>
         </div>`);
@@ -272,9 +285,9 @@ function renderMatches({ last, next }) {
     cards.push(`<div class="result-card reveal">
           <div class="result-date">Next Match · ${fixtureDateShort(next.fixture)}, ${next.time}</div>
           <div class="result-matchup">
-            <div class="result-team">${OUR_DISPLAY_NAME}</div>
+            ${resultSide(OUR_DISPLAY_NAME)}
             <div class="result-vs">VS</div>
-            <div class="result-team">${displayName(next.opponent)}</div>
+            ${resultSide(next.opponent)}
           </div>
           <div class="result-status result-status--upcoming">Upcoming</div>
         </div>`);
