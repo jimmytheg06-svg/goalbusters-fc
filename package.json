@@ -1,0 +1,13 @@
+{
+  "name": "goalbuster-fc-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static site for GoalBuster FC. The only Node dependency here is Playwright, used solely by scripts/update-clubverse.mjs to pull our 40+ team's public schedule/results/standings from the D-Town Winter League 40 on ClubVerse on a weekly schedule.",
+  "type": "module",
+  "scripts": {
+    "update-clubverse": "node scripts/update-clubverse.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.47.0"
+  }
+}

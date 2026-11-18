@@ -100,6 +100,7 @@ nav{position:fixed;top:51px;left:0;right:0;width:100%;z-index:600;
   width:auto;padding:3px 8px;border-radius:3px;font-weight:700;font-size:10px;letter-spacing:.1em;}
 .scores-ti .score-win{background:rgba(76,175,114,.3);color:var(--mint);border:1px solid rgba(76,175,114,.5);}
 .scores-ti .score-loss{background:rgba(200,50,50,.2);color:#ff6b6b;border:1px solid rgba(200,50,50,.4);}
+.scores-ti .score-draw{background:rgba(255,255,255,.12);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.25);}
 .scores-ti .score-sep{color:var(--gold);opacity:.5;margin:0 -15px;}
 
 .h-eyebrow{font-family:'Crimson Pro',serif;font-size:14px;font-style:italic;
@@ -454,7 +455,7 @@ nav{position:fixed;top:51px;left:0;right:0;width:100%;z-index:600;
 
 /* ─── RECENT RESULTS ─── */
 .results{background:var(--ink);padding:110px 52px;}
-.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px;}
+.results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:40px;}
 .result-card{background:var(--card);padding:32px;border:1px solid rgba(201,168,76,.15);text-align:center;
   transition:all .35s cubic-bezier(.16,1,.3,1);border-radius:6px;}
 .result-card:hover{background:rgba(201,168,76,.1);border-color:var(--gold);transform:translateY(-8px);
@@ -464,7 +465,29 @@ nav{position:fixed;top:51px;left:0;right:0;width:100%;z-index:600;
 .result-team{font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.8);margin:8px 0;}
 .result-score{font-family:'Oswald',sans-serif;font-size:36px;font-weight:700;background:linear-gradient(135deg,var(--gold-l),var(--gold));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:12px 0;line-height:1;}
+.result-vs{font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.3);margin:16px 0;line-height:1;}
 .result-status{font-family:'Inter',sans-serif;font-size:10px;color:rgba(76,175,114,.8);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-top:12px;}
+.result-status--loss{color:#ff6b6b;}
+.result-status--draw{color:rgba(255,255,255,.5);}
+.result-status--upcoming{color:var(--gold);}
+
+.clubs-sub.results-sub{margin-top:14px;}
+.standings-wrap{margin-top:40px;background:var(--card);border:1px solid rgba(201,168,76,.15);
+  border-radius:6px;overflow:hidden;}
+.standings-wrap h3{font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gold);padding:24px 28px 0;}
+.standings-scroll{overflow-x:auto;padding:20px 28px 28px;}
+.standings-table{width:100%;border-collapse:collapse;min-width:560px;}
+.standings-table th{font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center;padding:10px 8px;
+  border-bottom:1px solid var(--line);white-space:nowrap;}
+.standings-table th:nth-child(2){text-align:left;}
+.standings-table td{font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,.75);
+  text-align:center;padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.05);}
+.standings-table td:nth-child(2){text-align:left;font-weight:600;color:#fff;}
+.standings-table tr:last-child td{border-bottom:none;}
+.standings-table tr.standings-row--us{background:rgba(201,168,76,.1);}
+.standings-table tr.standings-row--us td{color:var(--gold-l);font-weight:600;}
 
 /* ─── SPONSORS ─── */
 .sponsors{background:var(--cream);padding:110px 52px;}
@@ -741,18 +764,10 @@ footer{background:#040404;padding:68px 52px 34px;border-top:1px solid var(--line
 <!-- ═══ RECENT SCORES TICKER (TOP) ═══ -->
 <div class="scores-ticker">
   <div class="scores-ti">
-    <span><span class="score-team">GB-White</span> <span class="score-badge score-win">W</span> 10–0 Euless</span><span class="score-sep">|</span>
-    <span><span class="score-team">GB-Red</span> <span class="score-badge score-loss">L</span> 3–7 DFW</span><span class="score-sep">|</span>
-    <span><span class="score-team">GB-White</span> <span class="score-badge score-win">W</span> 3–0 FTW Rising</span><span class="score-sep">|</span>
-    <span><span class="score-team">GB-Red</span> <span class="score-badge score-loss">L</span> 1–4 Parbat</span><span class="score-sep">|</span>
-    <span><span class="score-team">GB-White</span> <span class="score-badge score-win">W</span> 2–1 DFW</span><span class="score-sep">|</span>
-    <span><span class="score-team">GB-Red</span> <span class="score-badge score-win">W</span> 8–1 ERFC</span><span class="score-sep">|</span>
-    <span><span class="score-team">GB-White</span> <span class="score-badge score-win">W</span> 10–0 Euless</span><span class="score-sep">|</span>
-    <span><span class="score-team">GB-Red</span> <span class="score-badge score-loss">L</span> 3–7 DFW</span><span class="score-sep">|</span>
-    <span><span class="score-team">GB-White</span> <span class="score-badge score-win">W</span> 3–0 FTW Rising</span><span class="score-sep">|</span>
-    <span><span class="score-team">GB-Red</span> <span class="score-badge score-loss">L</span> 1–4 Parbat</span><span class="score-sep">|</span>
-    <span><span class="score-team">GB-White</span> <span class="score-badge score-win">W</span> 2–1 DFW</span><span class="score-sep">|</span>
-    <span><span class="score-team">GB-Red</span> <span class="score-badge score-win">W</span> 8–1 ERFC</span><span class="score-sep">|</span>
+    <!-- AUTO:TICKER:START -->
+    <span><span class="score-team">GB 40+</span> D-Town Winter League 40 — schedule coming soon</span><span class="score-sep">|</span>
+    <span><span class="score-team">GB 40+</span> D-Town Winter League 40 — schedule coming soon</span><span class="score-sep">|</span>
+    <!-- AUTO:TICKER:END -->
   </div>
 </div>
 
@@ -1042,80 +1057,22 @@ footer{background:#040404;padding:68px 52px 34px;border-top:1px solid var(--line
   <div class="wrap">
     <div class="sec-lbl">How We Went</div>
     <h2 class="sec-h">Recent <em>Results</em></h2>
-    <!-- WEEK 3 RESULTS -->
-    <div style="margin-bottom:50px;border-top:2px solid var(--line);padding-top:40px;">
-      <h3 style="font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;">Week 3</h3>
-      <div class="results-grid">
-        <div class="result-card">
-          <div class="result-date">GoalBuster White</div>
-          <div class="result-matchup">
-            <div class="result-team">GBW</div>
-            <div class="result-score">10–0</div>
-            <div class="result-team">Euless United</div>
-          </div>
-          <div class="result-status">✓ Dominant Victory</div>
+    <p class="clubs-sub results-sub">Our 40+ team in the D-Town Winter League 40 — currently <!-- AUTO:STANDING:START -->building our 2026 record<!-- AUTO:STANDING:END -->. Pulled automatically from ClubVerse every week.</p>
+
+    <div class="results-grid">
+      <!-- AUTO:MATCHES:START -->
+      <div class="result-card">
+        <div class="result-date">D-Town Winter League 40</div>
+        <div class="result-matchup">
+          <div class="result-team">Schedule not yet released</div>
         </div>
-        <div class="result-card">
-          <div class="result-date">GoalBuster Red</div>
-          <div class="result-matchup">
-            <div class="result-team">GBR</div>
-            <div class="result-score">3–7</div>
-            <div class="result-team">DFW Himalaya</div>
-          </div>
-          <div class="result-status">✗ Loss</div>
-        </div>
+        <div class="result-status result-status--upcoming">Check back soon</div>
       </div>
+      <!-- AUTO:MATCHES:END -->
     </div>
 
-    <!-- WEEK 2 RESULTS -->
-    <div style="margin-bottom:50px;border-top:2px solid var(--line);padding-top:40px;">
-      <h3 style="font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;">Week 2</h3>
-      <div class="results-grid">
-        <div class="result-card">
-          <div class="result-date">GoalBuster White</div>
-          <div class="result-matchup">
-            <div class="result-team">GBW</div>
-            <div class="result-score">3–0</div>
-            <div class="result-team">FTW Rising</div>
-          </div>
-          <div class="result-status">✓ Convincing Win</div>
-        </div>
-        <div class="result-card">
-          <div class="result-date">GoalBuster Red</div>
-          <div class="result-matchup">
-            <div class="result-team">GBR</div>
-            <div class="result-score">1–4</div>
-            <div class="result-team">Parbat FC</div>
-          </div>
-          <div class="result-status">✗ Loss</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- WEEK 1 RESULTS -->
-    <div style="margin-bottom:20px;border-top:2px solid var(--line);padding-top:40px;">
-      <h3 style="font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;">Week 1</h3>
-      <div class="results-grid">
-        <div class="result-card">
-          <div class="result-date">GoalBuster White</div>
-          <div class="result-matchup">
-            <div class="result-team">GBW</div>
-            <div class="result-score">2–1</div>
-            <div class="result-team">DFW Himalaya</div>
-          </div>
-          <div class="result-status">✓ Victory</div>
-        </div>
-        <div class="result-card">
-          <div class="result-date">GoalBuster Red</div>
-          <div class="result-matchup">
-            <div class="result-team">GBR</div>
-            <div class="result-score">8–1</div>
-            <div class="result-team">ERFC White</div>
-          </div>
-          <div class="result-status">✓ Emphatic Win</div>
-        </div>
-      </div>
-    </div>
+    <!-- AUTO:STANDINGS:START -->
+    <!-- AUTO:STANDINGS:END -->
   </div>
 </section>
 
