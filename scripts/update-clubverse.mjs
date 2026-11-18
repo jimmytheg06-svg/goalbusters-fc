@@ -31,17 +31,27 @@ function normalize(s) {
 function isUs(team) {
   return normalize(team).includes("goalbuster");
 }
+// Same as normalize(), but also drops a trailing "fc"/"footballclub" so
+// "Machhapuchhre" (as it appears in standings/fixtures) still matches a
+// club logo whose <img alt> is "Machhapuchhre FC".
+function coreName(s) {
+  return normalize(s).replace(/(footballclub|fc)$/, "");
+}
 
-// Known opponent crests already hosted in this repo. Extend this as more
-// opponents' logos are added — anything not listed here falls back to
-// initials, which is safe. "D-Town FC White/Blue" and "Euless United" are
-// the same real-world clubs that play in the sibling D-Town 40+ League, so
-// these reuse North Texans Football Group's existing crest art.
+// Last-resort opponent crests committed to this repo, used only if
+// ClubVerse's own page doesn't have a logo for that club. "D-Town FC
+// White/Blue" and "Euless United" are the same real-world clubs that play
+// in the sibling D-Town 40+ League, so these reuse North Texans Football
+// Group's existing crest art.
 const TEAM_LOGO = {
   "D-Town FC White": "crest-dtown-fc.png",
   "D-Town FC Blue": "crest-dtown-fc.png",
   "Euless United": "crest-euless-united.png",
 };
+
+// Populated at runtime from ClubVerse's own page — every club has a logo
+// <img> there (alt=team name), keyed by coreName(). See buildPageLogoMap().
+let pageLogoMap = {};
 
 function displayName(team) {
   if (isUs(team)) return OUR_DISPLAY_NAME;
@@ -61,11 +71,28 @@ function monoBadge(team) {
   if (isUs(team)) {
     return `<img src="https://res.cloudinary.com/dlm10vyhl/image/upload/v1779228594/GBlogo_clean_eyyjwe.png" alt="" loading="lazy" decoding="async" />`;
   }
-  const logo = TEAM_LOGO[team];
+  const logo = pageLogoMap[coreName(team)] || TEAM_LOGO[team];
   if (logo) {
     return `<img src="${logo}" alt="" loading="lazy" decoding="async" />`;
   }
   return initials(team);
+}
+
+// ClubVerse's tournament page renders a logo <img> next to every club name
+// (standings, fixtures, team rosters) with alt=<team name>. Build a lookup
+// from those, skipping our own club (Cloudinary art used instead), the
+// ClubVerse app promo logo, and player headshots (their alt is a person's
+// name, which won't match any known team).
+function buildPageLogoMap(imgs, knownTeams) {
+  const knownCores = new Set(knownTeams.map(coreName));
+  const map = {};
+  for (const { src, alt } of imgs) {
+    if (!alt || isUs(alt)) continue;
+    const key = coreName(alt);
+    if (!key || !knownCores.has(key)) continue;
+    if (!map[key]) map[key] = src;
+  }
+  return map;
 }
 
 function ordinal(n) {
@@ -96,21 +123,20 @@ async function getTournamentText(page) {
 
   const main = page.locator("main").first();
 
-  if (process.env.DEBUG_IMAGES) {
-    const imgInfo = await main.evaluate((el) =>
-      Array.from(el.querySelectorAll("img")).map((img) => ({
-        src: img.src,
-        alt: img.alt,
-        nearbyText: img.closest("div")?.textContent?.trim().slice(0, 60),
-      }))
-    );
-    console.log("DEBUG images found on page:", JSON.stringify(imgInfo, null, 2));
-  }
-
   // The fixture widget defaults to an "Upcoming" filter, which is also
   // where standings/player-stats/teams live (unaffected by the filter).
   const defaultText = await main.innerText();
   assert(/goalbuster/i.test(defaultText), 'no team matching "GoalBuster" found on page');
+
+  // ClubVerse renders a logo <img alt="<team name>"> next to every club
+  // (standings, fixtures, rosters) — grab them all now while they're on
+  // screen, to use as real crest art instead of initials fallbacks.
+  const images = await main.evaluate((el) =>
+    Array.from(el.querySelectorAll("img")).map((img) => ({ src: img.src, alt: img.alt }))
+  );
+  if (process.env.DEBUG_IMAGES) {
+    console.log("DEBUG images found on page:", JSON.stringify(images, null, 2));
+  }
 
   // Completed results only appear after switching that filter — clicking
   // "Completed" specifically (rather than "All") has proven the more
@@ -126,7 +152,7 @@ async function getTournamentText(page) {
     console.warn('Could not switch to the "Completed" fixtures filter — completed results will be skipped.', err.message);
   }
 
-  return { defaultText, completedText };
+  return { defaultText, completedText, images };
 }
 
 function splitLines(text) {
@@ -389,9 +415,9 @@ async function main() {
   // D-Town 40+ League scraper).
   const context = await browser.newContext({ timezoneId: "America/Chicago" });
   const page = await context.newPage();
-  let defaultText, completedText;
+  let defaultText, completedText, images;
   try {
-    ({ defaultText, completedText } = await getTournamentText(page));
+    ({ defaultText, completedText, images } = await getTournamentText(page));
   } finally {
     await browser.close();
   }
@@ -399,6 +425,9 @@ async function main() {
   const lines = splitLines(defaultText);
   const allFixtures = [...parseFixtures(lines), ...(completedText ? parseFixtures(splitLines(completedText)) : [])];
   assert(allFixtures.length > 0, "no fixtures parsed from the page");
+
+  const knownTeams = [...new Set(allFixtures.flatMap((f) => [f.teamA, f.teamB]))];
+  pageLogoMap = buildPageLogoMap(images, knownTeams);
 
   const ourFixtures = allFixtures
     .filter((f) => isUs(f.teamA) || isUs(f.teamB))
@@ -441,6 +470,7 @@ async function main() {
   console.log("  Last:", last ? `${last.us}-${last.them} vs ${last.opponent}` : "(none)");
   console.log("  Next:", next ? `vs ${next.opponent} (${next.time})` : "(none)");
   console.log("  Standing:", standingText);
+  console.log("  Logos found on page:", Object.keys(pageLogoMap).length, "of", knownTeams.filter((t) => !isUs(t)).length, "opponents");
 }
 
 main().catch((err) => {
