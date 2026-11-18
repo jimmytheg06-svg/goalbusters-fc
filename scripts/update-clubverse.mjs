@@ -96,6 +96,17 @@ async function getTournamentText(page) {
 
   const main = page.locator("main").first();
 
+  if (process.env.DEBUG_IMAGES) {
+    const imgInfo = await main.evaluate((el) =>
+      Array.from(el.querySelectorAll("img")).map((img) => ({
+        src: img.src,
+        alt: img.alt,
+        nearbyText: img.closest("div")?.textContent?.trim().slice(0, 60),
+      }))
+    );
+    console.log("DEBUG images found on page:", JSON.stringify(imgInfo, null, 2));
+  }
+
   // The fixture widget defaults to an "Upcoming" filter, which is also
   // where standings/player-stats/teams live (unaffected by the filter).
   const defaultText = await main.innerText();

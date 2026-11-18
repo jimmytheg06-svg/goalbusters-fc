@@ -7,7 +7,12 @@ on:
     # workflow needs to keep running after Daylight Time ends (~Nov 1),
     # switch to '0 19 * * 0' for CST (UTC-6).
     - cron: "0 18 * * 0"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      debug_images:
+        description: "Log <img> elements found on the ClubVerse page (diagnostic only, no site changes)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -38,6 +43,8 @@ jobs:
 
       - name: Run ClubVerse update
         run: node scripts/update-clubverse.mjs
+        env:
+          DEBUG_IMAGES: ${{ github.event.inputs.debug_images }}
 
       - name: Check for changes
         id: diff
