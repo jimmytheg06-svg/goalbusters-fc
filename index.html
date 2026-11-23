@@ -693,8 +693,24 @@ footer{background:#040404;padding:68px 52px 34px;border-top:1px solid var(--line
 @media(max-width:700px){
   .gbcup-tile{top:auto;bottom:0;right:0;left:0;width:auto;max-width:none;
     border-radius:14px 14px 0 0;border:1px solid var(--gold);border-bottom:none;
-    transform:translateY(130%);}
+    transform:translateY(130%);padding:16px 18px 14px;max-height:80vh;overflow-y:auto;}
   .gbcup-tile.show{transform:translateY(0);}
+  /* Compact everything so the tile stops swallowing most of the screen on
+     mobile — date/location and the footer line are dropped (redundant with
+     the GB Cup section further down the page); countdown/spotlight/prize/
+     CTAs (the actual conversion hook) stay, just tighter. */
+  .gbcup-badge{margin-bottom:8px;}
+  .gbcup-title{font-size:20px;}
+  .gbcup-sub{margin-top:3px;}
+  .gbcup-meta{display:none;}
+  .gbcup-countdown{margin-top:10px;gap:5px;}
+  .gbcup-cd-item{padding:5px 2px;}
+  .gbcup-cd-num{font-size:15px;}
+  .gbcup-spotlight{margin-top:8px;padding:8px 12px;}
+  .gbcup-prize{margin-top:8px;font-size:18px;}
+  .gbcup-actions{margin-top:10px;gap:6px;}
+  .gbcup-btn-gold,.gbcup-btn-ghost{padding:9px 16px;}
+  .gbcup-foot{display:none;}
 }
 </style>
 </head>
