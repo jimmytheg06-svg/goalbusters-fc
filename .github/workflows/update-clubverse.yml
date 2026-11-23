@@ -2,10 +2,11 @@ name: Update ClubVerse schedule data
 
 on:
   schedule:
-    # Sundays at 1:00 PM CDT (UTC-5). The D-Town Winter League 40's actual
-    # match day hasn't been confirmed yet — adjust this once it is. If this
-    # workflow needs to keep running after Daylight Time ends (~Nov 1),
-    # switch to '0 19 * * 0' for CST (UTC-6).
+    # Sundays at 1:00 PM CDT (UTC-5), covering both leagues (scripts/
+    # update-clubverse.mjs scrapes each in turn). Neither league's actual
+    # match day/time has been confirmed against this cron — adjust once
+    # known. If this workflow needs to keep running after Daylight Time
+    # ends (~Nov 1), switch to '0 19 * * 0' for CST (UTC-6).
     - cron: "0 18 * * 0"
   workflow_dispatch:
     inputs:
@@ -61,7 +62,7 @@ jobs:
           git config user.name "goalbuster-clubverse-bot"
           git config user.email "actions@users.noreply.github.com"
           git add index.html
-          git commit -m "Auto-update 40+ league schedule/results from ClubVerse [skip ci]"
+          git commit -m "Auto-update league schedule/results from ClubVerse [skip ci]"
           git push
 
       - name: Open an issue if this run failed
@@ -74,5 +75,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: `ClubVerse auto-update failed — ${new Date().toISOString().slice(0, 10)}`,
-              body: `The scheduled ClubVerse update workflow failed and did not update the site.\n\nRun log: ${runUrl}\n\nThe 40+ league schedule/results/standings currently live on the site are unchanged from before this run — nothing broke on the live site, this just means it's stale until the next successful run (or a manual re-run via Actions → "Update ClubVerse schedule data" → "Run workflow").`,
+              body: `The scheduled ClubVerse update workflow failed and did not update the site.\n\nRun log: ${runUrl}\n\nThe league schedule/results/standings currently live on the site (both the 40+ and 35+ divisions) are unchanged from before this run — nothing broke on the live site, this just means it's stale until the next successful run (or a manual re-run via Actions → "Update ClubVerse schedule data" → "Run workflow").`,
             });

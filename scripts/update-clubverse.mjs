@@ -1,12 +1,15 @@
-// Pulls GoalBuster FC's 40+ team schedule/results/standings from our public
-// D-Town Winter League 40 page on ClubVerse and writes them into the marked
-// <!-- AUTO:...:START/END --> regions of index.html.
+// Pulls GoalBuster FC's team schedule/results/standings from our public
+// ClubVerse league pages and writes them into the marked
+// <!-- AUTO:...:START/END --> regions of index.html. Each league in
+// LEAGUES below gets its own MATCHES_<id>/STANDINGS_<id>/STANDING_<id>
+// markers; the topbar ticker is shared and combines recent results from
+// every league.
 //
 // ClubVerse renders match/standings data via a live Firestore listener, not
 // in the initial HTML, so this needs a real browser (Playwright) rather than
 // a plain HTTP fetch. Run with: node scripts/update-clubverse.mjs
 //
-// Fails loudly (non-zero exit) if the page structure doesn't match what we
+// Fails loudly (non-zero exit) if a page's structure doesn't match what we
 // expect, rather than silently writing bad data — see assert() below.
 
 import { chromium } from "playwright";
@@ -18,9 +21,24 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const INDEX_HTML = path.join(ROOT, "index.html");
 
-const TOURNAMENT_URL = "https://clubverseapp.com/t/d-town-winter-league-40-2026";
 const OUR_DISPLAY_NAME = "GoalBuster FC";
-const OUR_SHORT_TAG = "GB 40+";
+
+const LEAGUES = [
+  {
+    id: "40",
+    url: "https://clubverseapp.com/t/d-town-winter-league-40-2026",
+    label: "D-Town Winter League 40",
+    division: "40+ Division",
+    shortTag: "GB 40+",
+  },
+  {
+    id: "35",
+    url: "https://clubverseapp.com/t/dfw-himalayas-fc-sunday-league-35-2026",
+    label: "DFW Himalaya's Sunday League 35",
+    division: "35+ Division",
+    shortTag: "GB 35+",
+  },
+];
 
 // ClubVerse registration may carry the club's pre-rebrand name ("Goal
 // Busters FC") or any spacing/casing variant of "GoalBuster FC" — match
@@ -38,20 +56,16 @@ function coreName(s) {
   return normalize(s).replace(/(footballclub|fc)$/, "");
 }
 
-// Last-resort opponent crests committed to this repo, used only if
-// ClubVerse's own page doesn't have a logo for that club. "D-Town FC
-// White/Blue" and "Euless United" are the same real-world clubs that play
-// in the sibling D-Town 40+ League, so these reuse North Texans Football
-// Group's existing crest art.
+// Last-resort opponent crests committed to this repo, used only if a
+// league's ClubVerse page doesn't have a logo for that club itself.
+// "D-Town FC White/Blue" and "Euless United" are the same real-world clubs
+// that play in the sibling D-Town 40+ League, so these reuse North Texans
+// Football Group's existing crest art.
 const TEAM_LOGO = {
   "D-Town FC White": "crest-dtown-fc.png",
   "D-Town FC Blue": "crest-dtown-fc.png",
   "Euless United": "crest-euless-united.png",
 };
-
-// Populated at runtime from ClubVerse's own page — every club has a logo
-// <img> there (alt=team name), keyed by coreName(). See buildPageLogoMap().
-let pageLogoMap = {};
 
 function displayName(team) {
   if (isUs(team)) return OUR_DISPLAY_NAME;
@@ -67,22 +81,22 @@ function initials(team) {
     .join("");
 }
 
-function monoBadge(team) {
+function monoBadge(team, logoMap) {
   if (isUs(team)) {
     return `<img src="https://res.cloudinary.com/dlm10vyhl/image/upload/v1779228594/GBlogo_clean_eyyjwe.png" alt="" loading="lazy" decoding="async" />`;
   }
-  const logo = pageLogoMap[coreName(team)] || TEAM_LOGO[team];
+  const logo = logoMap[coreName(team)] || TEAM_LOGO[team];
   if (logo) {
     return `<img src="${logo}" alt="" loading="lazy" decoding="async" />`;
   }
   return initials(team);
 }
 
-// ClubVerse's tournament page renders a logo <img> next to every club name
-// (standings, fixtures, team rosters) with alt=<team name>. Build a lookup
-// from those, skipping our own club (Cloudinary art used instead), the
-// ClubVerse app promo logo, and player headshots (their alt is a person's
-// name, which won't match any known team).
+// Each league's tournament page renders a logo <img> next to every club
+// name (standings, fixtures, team rosters) with alt=<team name>. Build a
+// lookup from those, skipping our own club (Cloudinary art used instead),
+// the ClubVerse app promo logo, and player headshots (their alt is a
+// person's name, which won't match any known team).
 function buildPageLogoMap(imgs, knownTeams) {
   const knownCores = new Set(knownTeams.map(coreName));
   const map = {};
@@ -109,10 +123,10 @@ function assert(condition, message) {
 
 // --- Text extraction -------------------------------------------------
 
-async function getTournamentText(page) {
+async function getTournamentText(page, league) {
   // Not "networkidle": ClubVerse holds a long-polling Firestore connection
   // open indefinitely, so the network never actually goes idle.
-  await page.goto(`${TOURNAMENT_URL}#matches`, { waitUntil: "domcontentloaded" });
+  await page.goto(`${league.url}#matches`, { waitUntil: "domcontentloaded" });
 
   // Data loads via a live Firestore listener; wait for it to actually
   // populate rather than trusting networkidle alone.
@@ -126,7 +140,7 @@ async function getTournamentText(page) {
   // The fixture widget defaults to an "Upcoming" filter, which is also
   // where standings/player-stats/teams live (unaffected by the filter).
   const defaultText = await main.innerText();
-  assert(/goalbuster/i.test(defaultText), 'no team matching "GoalBuster" found on page');
+  assert(/goalbuster/i.test(defaultText), `no team matching "GoalBuster" found on ${league.label} page`);
 
   // ClubVerse renders a logo <img alt="<team name>"> next to every club
   // (standings, fixtures, rosters) — grab them all now while they're on
@@ -135,12 +149,12 @@ async function getTournamentText(page) {
     Array.from(el.querySelectorAll("img")).map((img) => ({ src: img.src, alt: img.alt }))
   );
   if (process.env.DEBUG_IMAGES) {
-    console.log("DEBUG images found on page:", JSON.stringify(images, null, 2));
+    console.log(`DEBUG images found on ${league.label} page:`, JSON.stringify(images, null, 2));
   }
 
   // Completed results only appear after switching that filter — clicking
   // "Completed" specifically (rather than "All") has proven the more
-  // reliable target in testing on the sibling D-Town 40+ League page.
+  // reliable target in testing.
   let completedText = "";
   try {
     const completedTab = page.locator("button", { hasText: "Completed" }).first();
@@ -149,7 +163,7 @@ async function getTournamentText(page) {
     await page.waitForTimeout(1200);
     completedText = await main.innerText();
   } catch (err) {
-    console.warn('Could not switch to the "Completed" fixtures filter — completed results will be skipped.', err.message);
+    console.warn(`Could not switch to the "Completed" fixtures filter on ${league.label} — completed results will be skipped.`, err.message);
   }
 
   return { defaultText, completedText, images };
@@ -262,28 +276,41 @@ function parseStandingsTable(lines) {
 
 // --- HTML generation -------------------------------------------------
 
-function renderTicker({ completed, next }) {
-  const recent = completed.slice(-6);
+function tickerResultItem(league, r) {
+  const won = r.us > r.them;
+  const drew = r.us === r.them;
+  const cls = won ? "score-win" : drew ? "score-draw" : "score-loss";
+  const letter = won ? "W" : drew ? "D" : "L";
+  return `<span><span class="score-team">${league.shortTag}</span> <span class="score-badge ${cls}">${letter}</span> ${r.us}–${r.them} ${displayName(r.opponent)}</span><span class="score-sep">|</span>`;
+}
 
-  const resultItem = (r) => {
-    const won = r.us > r.them;
-    const drew = r.us === r.them;
-    const cls = won ? "score-win" : drew ? "score-draw" : "score-loss";
-    const letter = won ? "W" : drew ? "D" : "L";
-    return `<span><span class="score-team">${OUR_SHORT_TAG}</span> <span class="score-badge ${cls}">${letter}</span> ${r.us}–${r.them} ${displayName(r.opponent)}</span><span class="score-sep">|</span>`;
-  };
+function tickerNextItem(league, next) {
+  return `<span><span class="score-team">${league.shortTag}</span> <strong>Next:</strong>&nbsp;vs ${displayName(next.opponent)} &middot; ${fixtureDateShort(next.fixture)}, ${next.time}</span><span class="score-sep">|</span>`;
+}
 
-  let items;
-  if (recent.length) {
-    items = recent.map(resultItem);
-  } else if (next) {
-    items = [
-      `<span><span class="score-team">${OUR_SHORT_TAG}</span> <strong>Next:</strong>&nbsp;vs ${displayName(next.opponent)} &middot; ${fixtureDateShort(next.fixture)}, ${next.time}</span><span class="score-sep">|</span>`,
-    ];
-  } else {
-    items = [
-      `<span><span class="score-team">${OUR_SHORT_TAG}</span> D-Town Winter League 40 — schedule coming soon</span><span class="score-sep">|</span>`,
-    ];
+function tickerPlaceholderItem(league) {
+  return `<span><span class="score-team">${league.shortTag}</span> ${league.label} — schedule coming soon</span><span class="score-sep">|</span>`;
+}
+
+// Combines recent results across every league into one shared topbar
+// ticker. A league with no completed matches yet still gets represented
+// (via its next match, or a placeholder) so it doesn't just disappear.
+function renderTicker(leagueResults) {
+  const items = [];
+
+  for (const { league, completed, next } of leagueResults) {
+    if (completed.length > 0) continue;
+    items.push(next ? tickerNextItem(league, next) : tickerPlaceholderItem(league));
+  }
+
+  const allCompleted = leagueResults
+    .flatMap(({ league, completed }) => completed.map((result) => ({ league, result })))
+    .sort((a, b) => fixtureDateValue(b.result.fixture) - fixtureDateValue(a.result.fixture))
+    .slice(0, 8);
+  items.push(...allCompleted.map(({ league, result }) => tickerResultItem(league, result)));
+
+  if (!items.length) {
+    items.push(`<span><span class="score-team">GoalBuster FC</span> Schedule coming soon</span><span class="score-sep">|</span>`);
   }
 
   // CSS marquee loops via translateX(-50%), so the content must repeat
@@ -292,14 +319,14 @@ function renderTicker({ completed, next }) {
   return `${once}\n    ${once}`;
 }
 
-function resultSide(team) {
+function resultSide(team, logoMap) {
   return `<div class="result-side">
-              <div class="result-crest">${monoBadge(team)}</div>
+              <div class="result-crest">${monoBadge(team, logoMap)}</div>
               <div class="result-team">${displayName(team)}</div>
             </div>`;
 }
 
-function renderMatches({ last, next }) {
+function renderMatches(league, { last, next }, logoMap) {
   const cards = [];
 
   if (last) {
@@ -310,9 +337,9 @@ function renderMatches({ last, next }) {
     cards.push(`<div class="result-card reveal">
           <div class="result-date">Last Result · ${fixtureDateShort(last.fixture)}</div>
           <div class="result-matchup">
-            ${resultSide(OUR_DISPLAY_NAME)}
+            ${resultSide(OUR_DISPLAY_NAME, logoMap)}
             <div class="result-score">${last.us}–${last.them}</div>
-            ${resultSide(last.opponent)}
+            ${resultSide(last.opponent, logoMap)}
           </div>
           <div class="result-status${statusCls}">${statusLabel}</div>
         </div>`);
@@ -322,9 +349,9 @@ function renderMatches({ last, next }) {
     cards.push(`<div class="result-card reveal">
           <div class="result-date">Next Match · ${fixtureDateShort(next.fixture)}, ${next.time}</div>
           <div class="result-matchup">
-            ${resultSide(OUR_DISPLAY_NAME)}
+            ${resultSide(OUR_DISPLAY_NAME, logoMap)}
             <div class="result-vs">VS</div>
-            ${resultSide(next.opponent)}
+            ${resultSide(next.opponent, logoMap)}
           </div>
           <div class="result-status result-status--upcoming">Upcoming</div>
         </div>`);
@@ -332,7 +359,7 @@ function renderMatches({ last, next }) {
 
   if (!cards.length) {
     cards.push(`<div class="result-card reveal">
-          <div class="result-date">D-Town Winter League 40</div>
+          <div class="result-date">${league.label}</div>
           <div class="result-matchup">
             <div class="result-team">Schedule not yet released</div>
           </div>
@@ -343,7 +370,7 @@ function renderMatches({ last, next }) {
   return cards.join("\n        ");
 }
 
-function renderStandingsTable(rows) {
+function renderStandingsTable(league, rows) {
   const trs = rows
     .map((r) => {
       const us = isUs(r.team);
@@ -363,7 +390,7 @@ function renderStandingsTable(rows) {
     })
     .join("\n");
   return `<div class="standings-wrap reveal">
-          <h3>D-Town Winter League 40 — Standings</h3>
+          <h3>${league.label} — Standings</h3>
           <div class="standings-scroll">
             <table class="standings-table">
               <thead>
@@ -395,8 +422,9 @@ function replaceMarked(html, marker, replacement) {
 }
 
 // Same as replaceMarked, but for markers sitting inline mid-sentence (e.g.
-// STANDING) — no surrounding newlines, which HTML would otherwise collapse
-// into a stray space before any punctuation right after the marker.
+// STANDING_*) — no surrounding newlines, which HTML would otherwise
+// collapse into a stray space before any punctuation right after the
+// marker.
 function replaceMarkedInline(html, marker, replacement) {
   const re = new RegExp(`(<!-- AUTO:${marker}:START -->)([\\s\\S]*?)(<!-- AUTO:${marker}:END -->)`);
   assert(re.test(html), `marker AUTO:${marker} not found in index.html`);
@@ -405,29 +433,21 @@ function replaceMarkedInline(html, marker, replacement) {
 
 // --- Main ------------------------------------------------------------
 
-async function main() {
-  const browser = await chromium.launch();
-  // ClubVerse renders match times client-side from a stored UTC instant
-  // using the browser's local timezone. Pin it to Central time so scraped
-  // times match what fans see, regardless of the CI runner's OS timezone
-  // (GitHub Actions runners default to UTC, which would shift times by
-  // several hours — this exact bug was caught and fixed on the sibling
-  // D-Town 40+ League scraper).
-  const context = await browser.newContext({ timezoneId: "America/Chicago" });
+async function scrapeLeague(context, league) {
   const page = await context.newPage();
   let defaultText, completedText, images;
   try {
-    ({ defaultText, completedText, images } = await getTournamentText(page));
+    ({ defaultText, completedText, images } = await getTournamentText(page, league));
   } finally {
-    await browser.close();
+    await page.close();
   }
 
   const lines = splitLines(defaultText);
   const allFixtures = [...parseFixtures(lines), ...(completedText ? parseFixtures(splitLines(completedText)) : [])];
-  assert(allFixtures.length > 0, "no fixtures parsed from the page");
+  assert(allFixtures.length > 0, `no fixtures parsed from the ${league.label} page`);
 
   const knownTeams = [...new Set(allFixtures.flatMap((f) => [f.teamA, f.teamB]))];
-  pageLogoMap = buildPageLogoMap(images, knownTeams);
+  const logoMap = buildPageLogoMap(images, knownTeams);
 
   const ourFixtures = allFixtures
     .filter((f) => isUs(f.teamA) || isUs(f.teamB))
@@ -446,7 +466,7 @@ async function main() {
       return { status: "upcoming", fixture: f, opponent, time: f.time };
     });
 
-  assert(ourFixtures.length > 0, 'no fixtures found for a team matching "GoalBuster"');
+  assert(ourFixtures.length > 0, `no fixtures found for a team matching "GoalBuster" in ${league.label}`);
 
   const completed = ourFixtures.filter((f) => f.status === "completed").sort((a, b) => fixtureDateValue(a.fixture) - fixtureDateValue(b.fixture));
   const upcoming = ourFixtures.filter((f) => f.status === "upcoming").sort((a, b) => fixtureDateValue(a.fixture) - fixtureDateValue(b.fixture));
@@ -456,21 +476,59 @@ async function main() {
 
   const standingsRows = parseStandingsTable(lines).sort((a, b) => a.rank - b.rank);
   const ourStanding = standingsRows.find((r) => isUs(r.team));
-  const standingText = ourStanding ? `${ordinal(ourStanding.rank)} in the 40+ Division` : "building our 2026 record";
+  const standingText = ourStanding ? `${ordinal(ourStanding.rank)} in the ${league.division}` : "building our 2026 record";
+
+  return {
+    league,
+    completed,
+    next,
+    last,
+    standingsRows,
+    standingText,
+    logoMap,
+    logosFound: Object.keys(logoMap).length,
+    opponentCount: knownTeams.filter((t) => !isUs(t)).length,
+  };
+}
+
+async function main() {
+  const browser = await chromium.launch();
+  // ClubVerse renders match times client-side from a stored UTC instant
+  // using the browser's local timezone. Pin it to Central time so scraped
+  // times match what fans see, regardless of the CI runner's OS timezone
+  // (GitHub Actions runners default to UTC, which would shift times by
+  // several hours — this exact bug was caught and fixed on the sibling
+  // D-Town 40+ League scraper).
+  const context = await browser.newContext({ timezoneId: "America/Chicago" });
+
+  let leagueResults;
+  try {
+    leagueResults = [];
+    for (const league of LEAGUES) {
+      leagueResults.push(await scrapeLeague(context, league));
+    }
+  } finally {
+    await browser.close();
+  }
 
   let html = await readFile(INDEX_HTML, "utf8");
-  html = replaceMarked(html, "TICKER", renderTicker({ completed, next }));
-  html = replaceMarkedInline(html, "STANDING", standingText);
-  html = replaceMarked(html, "MATCHES", renderMatches({ last, next }));
-  html = replaceMarked(html, "STANDINGS", renderStandingsTable(standingsRows));
+  html = replaceMarked(html, "TICKER", renderTicker(leagueResults));
+  for (const r of leagueResults) {
+    html = replaceMarkedInline(html, `STANDING_${r.league.id}`, r.standingText);
+    html = replaceMarked(html, `MATCHES_${r.league.id}`, renderMatches(r.league, { last: r.last, next: r.next }, r.logoMap));
+    html = replaceMarked(html, `STANDINGS_${r.league.id}`, renderStandingsTable(r.league, r.standingsRows));
+  }
 
   await writeFile(INDEX_HTML, html, "utf8");
 
   console.log("ClubVerse update applied:");
-  console.log("  Last:", last ? `${last.us}-${last.them} vs ${last.opponent}` : "(none)");
-  console.log("  Next:", next ? `vs ${next.opponent} (${next.time})` : "(none)");
-  console.log("  Standing:", standingText);
-  console.log("  Logos found on page:", Object.keys(pageLogoMap).length, "of", knownTeams.filter((t) => !isUs(t)).length, "opponents");
+  for (const r of leagueResults) {
+    console.log(`  ${r.league.label} (${r.league.division}):`);
+    console.log("    Last:", r.last ? `${r.last.us}-${r.last.them} vs ${r.last.opponent}` : "(none)");
+    console.log("    Next:", r.next ? `vs ${r.next.opponent} (${r.next.time})` : "(none)");
+    console.log("    Standing:", r.standingText);
+    console.log("    Logos found on page:", r.logosFound, "of", r.opponentCount, "opponents");
+  }
 }
 
 main().catch((err) => {
