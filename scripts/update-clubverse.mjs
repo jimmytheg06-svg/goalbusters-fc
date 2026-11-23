@@ -293,21 +293,23 @@ function tickerPlaceholderItem(league) {
 }
 
 // Combines recent results across every league into one shared topbar
-// ticker. A league with no completed matches yet still gets represented
-// (via its next match, or a placeholder) so it doesn't just disappear.
+// ticker: recent scores first, then each league's upcoming fixture after
+// (not just as a fallback for a league with no completed games — every
+// league's next match shows, so fans can see what's coming up next too).
 function renderTicker(leagueResults) {
   const items = [];
 
-  for (const { league, completed, next } of leagueResults) {
-    if (completed.length > 0) continue;
-    items.push(next ? tickerNextItem(league, next) : tickerPlaceholderItem(league));
-  }
-
+  // Recent completed results across every league, most recent first.
   const allCompleted = leagueResults
     .flatMap(({ league, completed }) => completed.map((result) => ({ league, result })))
     .sort((a, b) => fixtureDateValue(b.result.fixture) - fixtureDateValue(a.result.fixture))
     .slice(0, 8);
   items.push(...allCompleted.map(({ league, result }) => tickerResultItem(league, result)));
+
+  // Upcoming fixtures, one per league, after the recent scores.
+  for (const { league, next } of leagueResults) {
+    items.push(next ? tickerNextItem(league, next) : tickerPlaceholderItem(league));
+  }
 
   if (!items.length) {
     items.push(`<span><span class="score-team">GoalBuster FC</span> Schedule coming soon</span><span class="score-sep">|</span>`);
